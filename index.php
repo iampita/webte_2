@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php
-//include 'config.php'; //neviem co tu s tymto, ked budeme mat databazu spolocnu tak to tam mozme dat.
+//include 'config.php'; //neviem.. potom ked vam to bude treba odkomentujte si
 include 'menu/menu.html';
 ?>
 

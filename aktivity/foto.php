@@ -9,13 +9,8 @@
     #</div>
 #done
 
-function connect(){     //zatial miesto configu a bez osetrenia to riesim takto... kym nemame spolocnu db
-    $servername = "localhost";
-    $username = "xjahodnikovab";
-    $password = "martin";
-    $dbname = "event_db";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
+function connect(){
+    $conn = new mysqli(HOSTNAME, USERNAME, PASSWORD, DBNAME);
     mysqli_set_charset($conn,"utf8");
     $conn->set_charset("utf8");
     if ($conn->connect_error) {
