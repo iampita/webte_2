@@ -28,7 +28,7 @@ function getPhotos($folder){
             if ($file != "." && $file != "..")
             if($format == 'jpg' || $format == 'png' || $format == 'gif')
             {
-                $thelist .= '<div class="bthumbnail"> <img src="'.$folder."/".$file.'" onclick="openModal(\''.$folder."/".$file.'\')"> </div>';
+                $thelist .= '<div class="bthumbnail"> <img src="aktivity/'.$folder."/".$file.'" onclick="openModal(\'aktivity/'.$folder."/".$file.'\')"> </div>';
                 //onclick="funk(\''.$file .'\')"
             }
         }
