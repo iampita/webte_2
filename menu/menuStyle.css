@@ -1,0 +1,95 @@
+/* ==================================================
+
+z nasledujuceho tutorialu
+Tutorial Link:    http://html-tuts.com/?p=8136
+
+=================================================== */
+
+/* Menu General Styles */
+.bmenuBackground {
+	background: #51778e;
+	/*background: #1d4558;*/
+	text-align: center; /* alebo left ako chcete.. */
+}
+.bdropDownMenu a {
+	color: #FFF;
+}
+.bdropDownMenu,
+.bdropDownMenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.bdropDownMenu li {
+	position: relative;
+}
+.bdropDownMenu a {
+	padding: 17px 20px;
+	display: block;
+	text-decoration: none;
+}
+.bdropDownMenu a:hover {
+	background: #464848;
+}
+
+
+/* Level 1 Drop Down Menu */
+.bdropDownMenu > li {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: -4px;
+}
+.bdropDownMenu > li:first-child {
+	margin-left: 0;
+}
+.bdropDownMenu > li > a {}
+.bdropDownMenu > li > a:hover {}
+
+
+/* Level 2 */
+.bdropDownMenu > li > ul {
+	text-align: left;
+	max-width: 200px;
+	display: none;
+	background: #376179;
+	/*background: #305976;*/
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 9999999;
+}
+.bdropDownMenu > li:hover > ul {
+	display: block;
+}
+.bdropDownMenu ul li a {}
+.bdropDownMenu ul li a:hover {}
+
+
+
+/* Level 3 */
+.bdropDownMenu > li > ul > li > ul {
+	text-align: left;
+	display: none;
+	background: #385264;
+	/*background: #326986;*/
+	position: absolute;
+	left: 100%;
+	top: 0;
+	z-index: 9999999;
+}
+.bdropDownMenu > li > ul > li:hover > ul {
+	display: block;
+}
+.bdropDownMenu ul ul li {}
+.bdropDownMenu ul ul li a {}
+.bdropDownMenu ul ul li a:hover {}
+
+@media screen and (max-width: 667px) {
+	.bdropDownMenu a {
+		padding: 17px 20px;
+	}
+	.bdropDownMenu > li > ul > li > ul {
+		position: relative;
+		left: 0;
+	}
+}
