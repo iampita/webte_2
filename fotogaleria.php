@@ -12,7 +12,7 @@
 
 <?php
 //include '../config.php'; ?
-include 'menu/menu.html';
+include 'menu/menu.php';
 include 'aktivity/foto.php';
 makeRowSK();
 ?>

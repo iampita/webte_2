@@ -21,7 +21,7 @@ $translations = simplexml_load_file("./src/languages.xml");
         <link rel="stylesheet" href="src/main.css">
     </head>
     <body>
-        <?php include 'menu/menu.html';?>
+        <?php include 'menu/menu.php';?>
         <h1><?php echo $translations->$site->title->$lang;?></h1>
         <div class="flex-container">
             <div class="kontakt flex-links" id="ustav">
