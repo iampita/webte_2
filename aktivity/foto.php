@@ -11,8 +11,8 @@
 
 function connect(){
     $conn = new mysqli(HOSTNAME, USERNAME, PASSWORD, DBNAME);
-    mysqli_set_charset($conn,"utf8");
-    $conn->set_charset("utf8");
+    mysqli_set_charset($conn,"utf8mb4");
+    $conn->set_charset("utf8mb4");
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -45,7 +45,7 @@ function makeRowSK(){
         while($row = $result->fetch_assoc()) {
             $niceDate = date('d.m.Y', strtotime($row['Date']));
             echo '<div class="bnavi">';
-            echo '<p>'.$row['Title-SK'].', '.$niceDate.'</p>';
+            echo '<p><span class="bTitleNadpis">'.$row['Title-SK'].'</span>, '.$niceDate.'</p><br>';
             echo '<div class="brow">';
 
             echo getPhotos($row['Folder']);
@@ -64,7 +64,7 @@ function makeRowEN(){
         while($row = $result->fetch_assoc()) {
             $niceDate = date('d.m.Y', strtotime($row['Date']));
             echo '<div class="bnavi">';
-            echo '<p>'.$row['Title-EN'].', '.$niceDate.'</p>';
+            echo '<p><span class="bTitleNadpis">'.$row['Title-EN'].'</span>, '.$niceDate.'</p><br>';
             echo '<div class="brow">';
 
             echo getPhotos($row['Folder']);
