@@ -12,7 +12,7 @@
 
 <?php
 //include '../config.php'; ?
-include 'menu/menu.html';
+include 'menu/menu.php';
 include 'aktivity/foto.php';
 makeRowEN();
 ?>
@@ -30,6 +30,6 @@ makeRowEN();
 </div>
 
 
-
+<?php include_once './src/footer.php' ?>
 </body>
 </html>
