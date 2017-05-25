@@ -11,6 +11,6 @@
 //include 'config.php'; //neviem.. potom ked vam to bude treba odkomentujte si
 include 'menu/menu.html';
 ?>
-
+<?php include_once './src/footer.php' ?>
 </body>
 </html>

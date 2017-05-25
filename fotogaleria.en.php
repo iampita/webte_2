@@ -30,6 +30,6 @@ makeRowEN();
 </div>
 
 
-
+<?php include_once './src/footer.php' ?>
 </body>
 </html>
