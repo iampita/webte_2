@@ -4,17 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width"/>
     <title>Fotogaléria</title>
+
     <link rel="stylesheet" type="text/css" href="aktivity/fotoStyle.css">
     <link rel="stylesheet" type="text/css" href="menu/menuStyle.css">
-    <script src="fotoskript.js"></script>
+    <script src="aktivity/fotoskript.js"></script>
+
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0, width=device-width, user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.concisecss.com/concise.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="src/main.css">
+
+
 </head>
 <body>
 
 <?php
-//include '../config.php'; ?
+include 'config.php';
 include 'menu/menu.php';
 include 'aktivity/foto.php';
-makeRowSK();
+isset($_GET['lang']) ? $lang = $_GET['lang'] : $lang = 'sk';
+if($lang== 'en')
+    makeRowEN();
+else makeRowSK();
 ?>
 
 
