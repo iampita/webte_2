@@ -44,3 +44,15 @@ body{
     width: 65%;
     height: 80%;
 }
+
+@media screen and (max-width: 667px) {
+	body{
+	    margin: 2px;
+	}
+	#map{
+	    width: 50%;
+	}
+	.flex-links{
+	    width: 45%
+	}
+}
