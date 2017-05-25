@@ -1,9 +1,15 @@
+<?php
+include_once './src/Translator.php';
+$page = Translator::getSite();
+$translation = Translator::translate($page[0], $_GET['lang'])
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width"/>
-    <title>Fotogaléria</title>
+    <title><?php echo $translation->title;?></title>
 
     <link rel="stylesheet" type="text/css" href="aktivity/fotoStyle.css">
     <link rel="stylesheet" type="text/css" href="menu/menuStyle.css">
