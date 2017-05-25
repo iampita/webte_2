@@ -1,17 +1,14 @@
 <?php
-$url = $_SERVER["PHP_SELF"];
-$parts = explode('/', $url);
-$site = explode('.', $parts[count($parts) - 1])[0];
+include_once './src/Translator.php';
 
-isset($_GET['lang']) ? $lang = $_GET['lang'] : $lang = 'sk';
-if($lang != 'sk' && $lang != 'en') $lang = 'sk';
-$translations = simplexml_load_file("./src/languages.xml");
+$page = Translator::getSite();
+$translation = Translator::translate($page[0], $_GET['lang'])
 ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title><?php echo $translations->$site->title->$lang;?></title>
+        <title><?php echo $translation->title;?></title>
         <link rel="stylesheet" type="text/css" href="menu/menuStyle.css">
         <meta name="HandheldFriendly" content="true" />
         <meta name="MobileOptimized" content="320" />
@@ -22,20 +19,20 @@ $translations = simplexml_load_file("./src/languages.xml");
     </head>
     <body>
         <?php include 'menu/menu.php';?>
-        <h1><?php echo $translations->$site->title->$lang;?></h1>
+        <h1><?php echo $translation->title;?></h1>
         <div class="flex-container">
             <div class="kontakt flex-links" id="ustav">
-                <?php echo $translations->$site->institute->$lang;?><br>
-                <?php echo $translations->$site->faculty->$lang;?><br>
-                <?php echo $translations->$site->street->$lang;?><br>
-                <?php echo $translations->$site->city->$lang;?><br>
-                <?php echo $translations->$site->country->$lang;?><br><br>
-                <?php echo $translations->$site->secretariat->$lang;?><br>
-                <?php echo $translations->$site->secretary->$lang;?><br>
-                <?php echo $translations->$site->room->$lang;?><br>
-                <?php echo $translations->$site->phone1->$lang;?><br>
-                <?php echo $translations->$site->phone2->$lang;?><br>
-                <?php echo $translations->$site->webpage->$lang;?><br>
+                <?php echo $translation->institute;?><br>
+                <?php echo $translation->faculty;?><br>
+                <?php echo $translation->street;?><br>
+                <?php echo $translation->city;?><br>
+                <?php echo $translation->country;?><br><br>
+                <?php echo $translation->secretariat;?><br>
+                <?php echo $translation->secretary;?><br>
+                <?php echo $translation->room;?><br>
+                <?php echo $translation->phone1;?><br>
+                <?php echo $translation->phone2;?><br>
+                <?php echo $translation->webpage;?><br>
             </div>
             <br><br>
             <div class="map flex-map" id="map"></div>

@@ -1,59 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
     <contact>
-        <title>
-            <sk>Kontakt</sk>
-            <en>Contact</en>
-        </title>
-        <institute>
-            <sk>Ústav automobilovej mechatroniky</sk>
-            <en>Institute of Automobile Mechatronics</en>
-        </institute>
-        <faculty>
-            <sk>FEI STU</sk>
-            <en>FEEIT STU</en>
-        </faculty>
-        <street>
-            <sk>Ilkovičova 3</sk>
-            <en>Ilkovičova 3</en>
-        </street>
-        <city>
-            <sk>812 19 Bratislava</sk>
-            <en>812 19 Bratislava</en>
-        </city>
-        <country>
-            <sk>Slovenská republika</sk>
-            <en>Slovak republic</en>
-        </country>
-        <secretariat>
-            <sk>Kontakt na sekretariát:</sk>
-            <en>Secretariat contact:</en>
-        </secretariat>
-        <secretary>
-            <sk><![CDATA[<a href="mailto:katarina.kermietova@stuba.sk">Katarína&nbsp;Kermietová</a>]]></sk>
-            <en><![CDATA[<a href="mailto:katarina.kermietova@stuba.sk">Katarína&nbsp;Kermietová</a>]]></en>
-        </secretary>
-        <room>
-            <sk>miestnosť D116</sk>
-            <en>room D116</en>
-        </room>
-        <phone1>
-            <sk>+421 260 291 598</sk>
-            <en>+421 260 291 598</en>
-        </phone1>
-        <phone2>
-            <sk>+421 265 429 734</sk>
-            <en>+421 265 429 734</en>
-        </phone2>
-        <webpage>
-            <sk><![CDATA[<a href="http://www.uamt.fei.stuba.sk">www.uamt.fei.stuba.sk</a>]]></sk>
-            <en><![CDATA[<a href="http://www.uamt.fei.stuba.sk">www.uamt.fei.stuba.sk</a>]]></en>
-        </webpage>
+        <sk>
+            <title>Kontakt</title>
+            <institute>Ústav automobilovej mechatroniky</institute>
+            <faculty>FEI STU</faculty>
+            <street>Ilkovičova 3</street>
+            <city>812 19 Bratislava</city>
+            <country>Slovenská republika</country>
+            <secretariat>Kontakt na sekretariát:</secretariat>
+            <secretary><![CDATA[<a href="mailto:katarina.kermietova@stuba.sk">Katarína&nbsp;Kermietová</a>]]></secretary>
+            <room>miestnosť D116</room>
+            <phone1>+421 260 291 598</phone1>
+            <phone2>+421 265 429 734</phone2>
+            <webpage><![CDATA[<a href="http://www.uamt.fei.stuba.sk">www.uamt.fei.stuba.sk</a>]]></webpage>
+        </sk>
+        <en>
+            <title>Contact</title>
+            <institute>Institute of Automobile Mechatronics</institute>
+            <faculty>FEEIT STU</faculty>
+            <street>Ilkovičova 3</street>
+            <city>812 19 Bratislava</city>
+            <country>Slovak Republic</country>
+            <secretariat>Secretariat contact:</secretariat>
+            <secretary><![CDATA[<a href="mailto:katarina.kermietova@stuba.sk">Katarína&nbsp;Kermietová</a>]]></secretary>
+            <room>room D116</room>
+            <phone1>+421 260 291 598</phone1>
+            <phone2>+421 265 429 734</phone2>
+            <webpage><![CDATA[<a href="http://www.uamt.fei.stuba.sk">www.uamt.fei.stuba.sk</a>]]></webpage>
+        </en>
     </contact>
     <staff>
-        <title>
-            <sk>Pracovníci</sk>
-            <en>Staff</en>
-        </title>
+        <sk>
+            <title>Pracovníci</title>
+        </sk>
+        <en>
+            <title>Staff</title>
+        </en>
     </staff>
 </root>

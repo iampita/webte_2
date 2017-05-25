@@ -1,17 +1,14 @@
 <?php
-$url = $_SERVER["PHP_SELF"];
-$parts = explode('/', $url);
-$site = explode('.', $parts[count($parts) - 1])[0];
+include_once './src/Translator.php';
 
-isset($_GET['lang']) ? $lang = $_GET['lang'] : $lang = 'sk';
-if($lang != 'sk' && $lang != 'en') $lang = 'sk';
-$translations = simplexml_load_file("./src/languages.xml");
+$page = Translator::getSite();
+$translation = Translator::translate($page[0], $_GET['lang'])
 ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title><?php echo $translations->$site->title->$lang;?></title>
+        <title><?php echo $translation->title;?></title>
         <link rel="stylesheet" type="text/css" href="menu/menuStyle.css">
         <meta name="HandheldFriendly" content="true" />
         <meta name="MobileOptimized" content="320" />
@@ -22,7 +19,7 @@ $translations = simplexml_load_file("./src/languages.xml");
     </head>
     <body>
         <?php include 'menu/menu.php';?>
-        <h1><?php echo $translations->$site->title->$lang;?></h1>
+        <h1><?php echo $translation->title;?></h1>
 
         <?php include_once './src/footer.php' ?>
     </body>
