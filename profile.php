@@ -27,7 +27,7 @@ function profil($id,$myrights) {
 	$result = $conn->query($sql3);
 			
 	while($row = $result->fetch_assoc()) {
-		echo '<img src="../images/'.$row['photo'].'" width="200"><p>Meno: '.$row['name'].' Priezvisko: '.$row['surname'].''.$row['title1'].' '.$row['title2']' Miestnost: '.$row['room'].' Telefon: '.$row['phone'].'</p>';
+		echo '<img src="../images/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['title2'].''.$row['name'].' '.$row['surname'].' Miestnost: '.$row['room'].' Klapka: '.$row['phone'].'</p> Popis: '.$row['staffRole'];
 		$name = $row['ldap'] ;
 	}
 
