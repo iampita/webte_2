@@ -50,7 +50,7 @@
         <td>Zástupca:</td><td>prof. Ing. Viktor Ferencey, CSc.</td>
     </tr>
 </table>
-<p>Organizačný poriadok Ústavu automobilovej mechatroniky (<a href="organizacny_poriadok.pdf">organizacny_poriadok.pdf</a>)</p>
+<p>Organizačný poriadok Ústavu automobilovej mechatroniky (<a href="./resources/organizacny_poriadok.pdf">organizacny_poriadok.pdf</a>)</p>
 <br>
 
 <h3>Oddelenia</h3>

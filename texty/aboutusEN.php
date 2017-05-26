@@ -47,7 +47,7 @@
         <Td> Representative: </td> <td> prof. Ing. Viktor Ferencey, CSc. </Td>
     </Tr>
 </Table>
-<P> Organizational chart of the Institute of Automobile Mechatronics (<a href="organizacny_poriadok.pdf"> organizacny_poriadok.pdf </a>) </p>
+<P> Organizational chart of the Institute of Automobile Mechatronics (<a href="./resources/organizacny_poriadok.pdf"> organizacny_poriadok.pdf </a>) </p>
 <br>
 
 <h3> Department </h3>
