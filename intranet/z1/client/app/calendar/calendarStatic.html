@@ -1,0 +1,47 @@
+<div ng-controller="calendarStaticCtrl">
+    <table class="table table-bordered">
+        <thead>
+            <th>Celé meno | dni</th>
+            <th ng-repeat="i in days track by $index" ng-class="{'bg-warning': ($index+currDay+1) % 7 == 0 || ($index+currDay) % 7 == 0,'big-table-header':true}"><p>{{1+$index}}.</p><p class="day-name">{{nameddays[($index+currDay) % 7].name}}</p></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="employee in employees track by $index">
+                <td class="bg-info">{{employee.surname + " " + employee.name}}</td>
+                <td ng-repeat="i in days track by $index" ng-class="{'red':sickLeave($index, $parent.$index),'orange':famMemCare($index, $parent.$index), 'green':businessTrip($index,$parent.$index), 'blue':holiday($index,$parent.$index), 'grey':holidayPlan($index,$parent.$index)}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-lg-2">
+        <select class="form-control" ng-change="updateStaticTable()" ng-model="selectedMonth" ng-options="m.name for m in months">
+        </select>
+        <select class="form-control" ng-change="updateStaticTable()" ng-model="selectedYear" ng-options="y for y in calYears">
+        </select>
+    </div>
+    <div class="legend">
+        <div class="col-lg-2">
+            <div class="legend-box red">
+            </div>
+            <p class="legend-text">PN</p>
+        </div>
+        <div class="col-lg-2">
+            <div class="legend-box orange">
+            </div>
+            <p class="legend-text">OČR</p>
+        </div>
+        <div class="col-lg-2">
+            <div class="legend-box green">
+            </div>
+            <p class="legend-text">Služobná cesta</p>
+        </div>
+        <div class="col-lg-2">
+            <div class="legend-box blue">
+            </div>
+            <p class="legend-text">Dovolenka</p>
+        </div>
+        <div class="col-lg-2">
+            <div class="legend-box grey">
+            </div>
+            <p class="legend-text">Plán dovolenky</p>
+        </div>
+    </div>
+</div>

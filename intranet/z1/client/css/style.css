@@ -1,0 +1,89 @@
+.red, .orange, .green, .blue, .grey, .purple{
+    color: white;
+}
+.red{
+    background-color: indianred;
+}
+.orange{
+    background-color: orange;
+}
+.green{
+    background-color: darkseagreen;
+}
+.blue{
+    background-color: skyblue;
+}
+.grey{
+    background-color: darkgrey;
+}
+.purple{
+    background-color: slateblue;
+}
+
+.legend-box{
+    display:inline-block;
+    width:25px;
+    height:25px;
+}
+.legend-text{
+    display:inline-block;
+    margin-left:10px;
+    font-size:20px;
+    top:-5px;
+    position:relative;
+}
+.legend{
+    margin-top:40px;
+}
+.employees:hover{
+    cursor:pointer;
+}
+.small-table{
+    width:20px;
+    height:20px;
+    font-size:10px;
+    text-align: center;
+}
+.small-legend{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    float:left;
+}
+.small-legend:hover{
+    cursor: pointer;
+}
+.small-save{
+    text-align:center;
+    width:100px;;
+    display:inline-block;
+    float:right;
+    height:20px;
+}
+.small-save:hover{
+    cursor: pointer;
+}
+.small-legend-element{
+    margin-right: 30px;
+    display:inline-block;
+}
+.small-legend-element p {
+    float:left;
+    margin-left:20px;
+    margin-top:3px;
+}
+.small-legend-box{
+    font-size:10px;
+    font-weight: bold;
+}
+.small-table p{
+    margin:0;
+    padding:0;
+}
+.day-name{
+    font-weight: bold;
+}
+.big-table-header p {
+    margin:0;
+    padding:0;
+}
