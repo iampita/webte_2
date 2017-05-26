@@ -15,9 +15,13 @@
 <body>
 <?php
 //include 'config.php'; //neviem.. potom ked vam to bude treba odkomentujte si
-include 'menu/menu.php';
-isset($_GET['lang']) ? $lang = $_GET['lang'] : $lang = 'sk';
-if($lang== 'en')
+include 'src/header.php';
+isset($_SESSION['lang']) ? $lang = $_SESSION['lang'] : $lang = 'sk';
+if($lang == 'en')
+    include_once 'menu/menuEN.php';
+else include 'menu/menu.php';
+
+if($lang == 'en')
     include 'texty/homepageEN.php';
 else include 'texty/homepageSK.php';
 
