@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.concisecss.com/concise.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="src/main.css">
+    <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
 <?php
