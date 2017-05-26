@@ -1,8 +1,10 @@
 <?php
 class Translator{
     public static function translate($page, $language){
-        isset($_GET['lang']) ? $lang = $_GET['lang'] : $lang = 'sk';
-        if($lang != 'sk' && $lang != 'en') $lang = 'sk';
+        session_start();
+        isset($_SESSION['lang']) ? $lang = $_SESSION['lang'] : $lang = 'sk';
+        isset($_GET['lang']) ? $lang = $_GET['lang'] : $lang = $_SESSION['lang'];
+        $_SESSION['lang'] = $lang;
         $translations = simplexml_load_file("./src/languages.xml");
         $pageTranslation = $translations->$page->$lang;
         return $pageTranslation;

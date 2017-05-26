@@ -18,7 +18,13 @@ $translation = Translator::translate($page[0], $_GET['lang'])
         <link rel="stylesheet" href="src/main.css">
     </head>
     <body>
-        <?php include 'menu/menu.php';?>
+        <?php
+        include 'src/header.php';
+        isset($_SESSION['lang']) ? $lang = $_SESSION['lang'] : $lang = 'sk';
+        if($lang == 'en')
+            include_once 'menu/menuEN.php';
+        else include 'menu/menu.php'
+        ;?>
         <h1><?php echo $translation->title;?></h1>
         <div class="flex-container">
             <div class="kontakt flex-links" id="ustav">
