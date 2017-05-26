@@ -29,5 +29,7 @@
             </ul>
         </li>
         <li><a href="contact.php">Kontakt</a></li>
+        <li><a href="intranet/client/intranet.html">Intranet</a></li> 
+        
     </ul>
 </div>
