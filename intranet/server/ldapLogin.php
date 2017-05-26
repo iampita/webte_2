@@ -18,6 +18,7 @@
             session_start();
             $_SESSION['username'] = $request->login;
             $_SESSION['roles'] = $roles;
+            $_SESSION['id'] = $staff;
             $data['loginState'] = "loginOK";
             $data['roles'] = $roles;
             echo json_encode($data); 
