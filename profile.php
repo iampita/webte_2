@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Zadanie 6</title>
+		<title>Intranet/Profil</title>
 		<meta charset="utf-8">
 		<!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
 <style>
@@ -46,6 +46,17 @@ li a:hover {
 	p     { display: table-row;  }
 	label { display: table-cell; }
 	input { display: table-cell; }
+.msubmit{
+	background-color: #419641;
+	border: none;
+	color: white;
+	padding: 7px 17px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 3px;
+}
 
 
 </style>
@@ -53,10 +64,9 @@ li a:hover {
 	</head>
 	<body>
 	<ul>
-  <li><a class="active" href="../index.php">Home</a></li>
-  <li><a href="#news">News</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li><a href="#about">About</a></li>
+  <li><a class="active" href="/webte_2/intranet/client/intranet.html">Home</a></li>
+
+  <li><a href="index.php">About</a></li>
 </ul>
 <?php
 	session_start() ;
@@ -73,13 +83,12 @@ li a:hover {
 
 
 
-
 	if(isset($_GET["id"])){
+		
+
 		$skuska = $_SESSION['roles'];
-
-
 		$iam = $_SESSION['username'];
-
+		
 
 		profil($_GET['id'],$iam,$skuska);
 	}	
@@ -87,20 +96,28 @@ li a:hover {
 
 
 function profil($id,$iam,$skuska) {
+	
 	$update = 0;
 	global $conn;
-	$sql3 = "SELECT * FROM users WHERE ldap='".$id."'";
-	$result = $conn->query($sql3);
-		echo '<div class="mmain">';	
-	while($row = $result->fetch_assoc()) {
+	
+	//echo $skuska;
+	$sql3 = "SELECT * FROM staff WHERE ldapLogin='".$id."'";
 
+	$result = $conn->query($sql3);
+
+		
+		echo '<div class="mmain">';	
+
+	while($row = $result->fetch_assoc()) {
+		
 		if(isset($_POST['hidden'])){
 			$update=1;
+			echo " ".$row['name']." ".$row['surname']."<br>";
 			echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><br>';
-			echo " ".$row['name']." ".$row['surname']."";
+			
 			echo "<form action='' method='post'> <table class='mtable' style='text-align: center'>";		
-			echo "<p><label for='title1'>Titul:</label><input type='text' name='title1' class='mupdateprof' value='".$row['title1']."' ></p>";
-			echo "<p><label for='title2'>Titul:</label><input type='text' name='title2' class='mupdateprof' value='".$row['title2']."' ></p>";
+			echo "<p><label for='title1'>Titul:</label><input type='text' name='title1' class='mupdateprof' value='".$row['title1']."' ></p><br>";
+			echo "<p><label for='title2'>Titul:</label><input type='text' name='title2' class='mupdateprof' value='".$row['title2']."' ></p><br>";
 			echo "<p><label for='ldapLogin'>Login:</label><input type='text' name='ldapLogin' class='mupdateprof' value='".$row['ldap']."'></p><br>";
 			echo "<p><label for='room'>Miestnosť</label><input type='text' name='room' class='mupdateprof' value='".$row['room']."'></p><br>";
 			echo "<p><label for='phone'>Telefón</label><input type='text' name='phone' class='mupdateprof' value='".$row['phone']."'></p><br>";
@@ -108,7 +125,7 @@ function profil($id,$iam,$skuska) {
 			echo "<p><label for='staffRole'>Zamestnanie</label><input type='text' name='staffRole' class='mupdateprof' value='".$row['staffRole']."' ></p><br>";
 			echo "<p><label for='function'>Funkcia</label><input type='text' name='function' class='mupdateprof' value='".$row['function']."' ></p><br>";
 			echo '<input type="hidden" name="hidden2" id="hidden2" value="edit" >';
-			echo "<p><input type='submit' value='Edituj profil'></p><br> </form>";
+			echo "<p><input type='submit' class='msubmit' value='Edituj profil'></p><br> </form>";
 
 		}
 
@@ -116,33 +133,34 @@ function profil($id,$iam,$skuska) {
 				$sql2 = "UPDATE users
 				SET title1 = '".$_POST['title1']."',
 				title2 = '".$_POST['title2']."',
-				ldap = '".$_POST['ldapLogin']."',
+				ldapLogin = '".$_POST['ldapLogin']."',
 				room = '".$_POST['room']."',
 				phone = '".$_POST['phone']."',
 				department = '".$_POST['department']."',
 				staffRole = '".$_POST['staffRole']."',
 				function = '".$_POST['function']."' 
-				WHERE ldap = '".$id."';";
+				WHERE ldapLogin = '".$id."';";
+				
 				$update=1;
 				$conn->query($sql2);
-				$sql = "SELECT * FROM users WHERE ldap='".$id."'";
+				$sql = "SELECT * FROM staff WHERE ldapLogin='".$id."'";
 				$result2 = $conn->query($sql);
 				while($row = $result2->fetch_assoc()) {
-					echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['name'].' '.$row['title2'].' '.$row['surname'].'<br> Miestnost: '.$row['room'].'<br> Klapka: '.$row['phone'].'</p><br> Popis: '.$row['staffRole'];
+					echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['name'].' '.$row['title2'].' '.$row['surname'].'<br> Miestnost: '.$row['room'].'<br> Klapka: '.$row['phone'].'<br>Oddelenie: '.$row['department'].'<br>Popis: '.$row['staffRole'].'</p>';
 					$name = $row['ldap'] ;
 					echo "<form action='' method='post'> <table class='mtable' style='text-align: center'>";
 					echo '<input type="hidden" name="hidden" id="hidden" value="edit" >';
-					echo "<input type='submit' value='Edituj profil'><br> </form>";
+					echo "<input type='submit' class='msubmit' value='Edituj profil'><br> </form>";
 				}
 			}
 
 		else{
-			echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['title2'].''.$row['name'].' '.$row['surname'].'<br> Miestnost: '.$row['room'].'<br> Klapka: '.$row['phone'].'</p><br> Popis: '.$row['staffRole'];
-			$name = $row['ldap'] ;
+			echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['name'].' '.$row['surname'].' '.$row['title2'].' <br> Miestnost: '.$row['room'].'<br> Klapka: '.$row['phone'].'<br>Oddelenie: '.$row['department'].'<br> Popis: '.$row['staffRole'].'</p>';
+			$name = $row['ldap'];
 			echo "<form action='' method='post'> <table class='mtable' style='text-align: center'>";
 			echo '<input type="hidden" name="hidden" id="hidden" value="edit" >';
 			if(($id==$iam)||in_array(5,$skuska)||in_array(2,$skuska)) {
-				echo "<input type='submit' value='Edituj profil'><br>";
+				echo "<input type='submit' class='msubmit' value='Edituj profil'><br>";
 			}
 			else
 			 echo "</form>";
