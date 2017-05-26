@@ -11,9 +11,8 @@ $translation = Translator::translate($page[0], $_GET['lang'])
     <meta name="viewport" content="width=device-width"/>
     <title><?php echo $translation->title;?></title>
 
-    <link rel="stylesheet" type="text/css" href="aktivity/fotoStyle.css">
+    <link rel="stylesheet" type="text/css" href="aktivity/mediaStyle.css">
     <link rel="stylesheet" type="text/css" href="menu/menuStyle.css">
-    <script src="aktivity/fotoskript.js"></script>
 
     <meta name="HandheldFriendly" content="true" />
     <meta name="MobileOptimized" content="320" />
@@ -21,8 +20,6 @@ $translation = Translator::translate($page[0], $_GET['lang'])
     <link rel="stylesheet" href="https://cdn.concisecss.com/concise.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="src/main.css">
-
-
 </head>
 <body>
 
@@ -32,24 +29,9 @@ include 'menu/menu.php';
 ?>
 <h1><?php echo $translation->title;?></h1>
 <?php
-include 'aktivity/foto.php';
-isset($_GET['lang']) ? $lang = $_GET['lang'] : $lang = 'sk';
-if($lang== 'en')
-    makeRowEN();
-else makeRowSK();
+include 'aktivity/video.php';
+makeVideoContent();
 ?>
-
-
-<div id="bmyModal" class="bmodal">
-    <span class="bclose cursor" onclick="closeModal()">&times;</span>
-
-    <div class="bmodal-content">
-        <div id="bmySlides">
-            <div id="bnumbertext"></div>
-            <img id="bmodalimg" src="?" alt="?">
-        </div>
-    </div>
-</div>
 
 
 <?php include_once './src/footer.php' ?>

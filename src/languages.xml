@@ -38,4 +38,44 @@
             <title>Staff</title>
         </en>
     </staff>
+    <fotogaleria>
+        <sk>
+            <title>Fotogaléria</title>
+        </sk>
+        <en>
+            <title>Photos</title>
+        </en>
+    </fotogaleria>
+    <video>
+        <sk>
+            <title>Videá</title>
+        </sk>
+        <en>
+            <title>Video</title>
+        </en>
+    </video>
+    <media>
+        <sk>
+            <title>Médiá</title>
+        </sk>
+        <en>
+            <title>Media</title>
+        </en>
+    </media>
+    <aboutus>
+        <sk>
+            <title>O nás</title>
+        </sk>
+        <en>
+            <title>About us</title>
+        </en>
+    </aboutus>
+    <study>
+        <sk>
+            <title>Štúdium</title>
+        </sk>
+        <en>
+            <title>Study</title>
+        </en>
+    </study>
 </root>

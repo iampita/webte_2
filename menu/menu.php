@@ -1,8 +1,8 @@
 <div class="bmenuBackground">
     <ul class="bdropDownMenu">
-        <li><a href="#">O nás</a></li>
+        <li><a href="aboutus.php">O nás</a></li>
         <li><a href="staff.php">Pracovníci</a></li>
-        <li><a href="#">Štúdium</a></li>
+        <li><a href="study.php">Štúdium</a></li>
         <li><a href="#">Výskum</a>
             <ul>
                 <li><a href="#">Projekty</a></li>
@@ -19,8 +19,8 @@
         <li><a href="#">Aktivity</a>
             <ul>
                 <li><a href="fotogaleria.php">Fotogaléria</a></li>
-                <li><a href="#">Videá</a></li>
-                <li><a href="#">Média</a></li>
+                <li><a href="video.php">Videá</a></li>
+                <li><a href="media.php">Média</a></li>
                 <li><a href="#">Naše tématické web stránky</a>
                     <ul>
                         <li><a href="http://www.e-mobilita.fei.stuba.sk/">Elektromobilita</a></li>
