@@ -64,10 +64,12 @@ li a:hover {
 	include_once('config.php');
 	error_reporting(-1);
 	
+
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection
 	if ($conn->connect_error) {
    		die("Connection failed: " . $conn->connect_error);
+
 		}
 	mysqli_set_charset($conn,"utf8");
 	

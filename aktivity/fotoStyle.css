@@ -4,6 +4,7 @@
     margin: 0px 5px 0px 5px;
     overflow: hidden;
     display: inline-block;
+    cursor: pointer;
 }
 
 .bthumbnail img{
@@ -22,9 +23,12 @@
     overflow: hidden;
     max-width: 900px;
     margin: auto;
+    margin-top: 60px;
 }
 
-
+.bTitleNadpis{
+    color: #c65146;
+}
 
 /* The Modal (background) */
 .bmodal {
