@@ -64,24 +64,29 @@ li a:hover {
 	include_once('config.php');
 	error_reporting(-1);
 	
-
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection
 	if ($conn->connect_error) {
    		die("Connection failed: " . $conn->connect_error);
-
 		}
 	mysqli_set_charset($conn,"utf8");
-	
+
+
+
+
 	if(isset($_GET["id"])){
-		//$myrights = [false,false,false,false,false];
-		//if(isset($_SESSION['myrights'])){
-			//$myrights=$_SESSION['myrights'];
-		//}
-		profil($_GET['id']);
+		$skuska = $_SESSION['roles'];
+
+
+		$iam = $_SESSION['username'];
+
+
+		profil($_GET['id'],$iam,$skuska);
 	}	
 
-function profil($id) {
+
+
+function profil($id,$iam,$skuska) {
 	$update = 0;
 	global $conn;
 	$sql3 = "SELECT * FROM users WHERE ldap='".$id."'";
@@ -123,7 +128,7 @@ function profil($id) {
 				$sql = "SELECT * FROM users WHERE ldap='".$id."'";
 				$result2 = $conn->query($sql);
 				while($row = $result2->fetch_assoc()) {
-					echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['title2'].''.$row['name'].' '.$row['surname'].'<br> Miestnost: '.$row['room'].'<br> Klapka: '.$row['phone'].'</p><br> Popis: '.$row['staffRole'];
+					echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['name'].' '.$row['title2'].' '.$row['surname'].'<br> Miestnost: '.$row['room'].'<br> Klapka: '.$row['phone'].'</p><br> Popis: '.$row['staffRole'];
 					$name = $row['ldap'] ;
 					echo "<form action='' method='post'> <table class='mtable' style='text-align: center'>";
 					echo '<input type="hidden" name="hidden" id="hidden" value="edit" >';
@@ -136,7 +141,11 @@ function profil($id) {
 			$name = $row['ldap'] ;
 			echo "<form action='' method='post'> <table class='mtable' style='text-align: center'>";
 			echo '<input type="hidden" name="hidden" id="hidden" value="edit" >';
-			echo "<input type='submit' value='Edituj profil'><br> </form>";
+			if(($id==$iam)||in_array(5,$skuska)||in_array(2,$skuska)) {
+				echo "<input type='submit' value='Edituj profil'><br>";
+			}
+			else
+			 echo "</form>";
 			}
 
 		
