@@ -3,6 +3,10 @@
 	<head>
 		<title>Intranet/Profil</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 		<!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
 <style>
 body{
@@ -15,16 +19,14 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 li {
     float: left;
 }
 
-li:first-child {
-    font-size: 18px;  
-}
+
 
 li a {
     display: block;
@@ -46,7 +48,7 @@ li a:hover {
 	p     { display: table-row;  }
 	label { display: table-cell; }
 	input { display: table-cell; }
-.msubmit{
+	.msubmit{
 	background-color: #419641;
 	border: none;
 	color: white;
@@ -57,16 +59,26 @@ li a:hover {
 	font-size: 16px;
 	border-radius: 3px;
 }
+.mmain{
 
+margin-left: 58px;
+}
+.mname{
+	font-size: 40px;
+}
+img{
+
+	margin-bottom: 20px;
+}
 
 </style>
 
 	</head>
 	<body>
 	<ul>
-  <li><a class="active" href="/webte_2/intranet/client/intranet.html">Home</a></li>
+  <li><a class="active" href="/webte_2/intranet/client/intranet.html">Intranet</a></li>
 
-  <li><a href="index.php">About</a></li>
+  <li style="float:right"><a href="index.php">Domov</a></li>
 </ul>
 <?php
 	session_start() ;
@@ -85,22 +97,26 @@ li a:hover {
 
 	if(isset($_GET["id"])){
 		
-
+		$prava=array();
 		$skuska = $_SESSION['roles'];
 		$iam = $_SESSION['username'];
-		
+		//var_dump($skuska);
+		foreach ($skuska as $key) {
+			array_push($prava, $key['roles_id']);
+			# code...
+		}
 
-		profil($_GET['id'],$iam,$skuska);
+		profil($_GET['id'],$iam,$prava);
 	}	
 
 
 
 function profil($id,$iam,$skuska) {
-	
+
 	$update = 0;
 	global $conn;
 	
-	//echo $skuska;
+	
 	$sql3 = "SELECT * FROM staff WHERE ldapLogin='".$id."'";
 
 	$result = $conn->query($sql3);
@@ -112,8 +128,8 @@ function profil($id,$iam,$skuska) {
 		
 		if(isset($_POST['hidden'])){
 			$update=1;
-			echo " ".$row['name']." ".$row['surname']."<br>";
-			echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><br>';
+			echo "<p class='mname'> ".$row['name']." ".$row['surname']."</p class='mname'><br>";
+			echo '<img src="resources/staff_photo/'.$row['photo'].'" width="250"><br>';
 			
 			echo "<form action='' method='post'> <table class='mtable' style='text-align: center'>";		
 			echo "<p><label for='title1'>Titul:</label><input type='text' name='title1' class='mupdateprof' value='".$row['title1']."' ></p><br>";
@@ -125,7 +141,7 @@ function profil($id,$iam,$skuska) {
 			echo "<p><label for='staffRole'>Zamestnanie</label><input type='text' name='staffRole' class='mupdateprof' value='".$row['staffRole']."' ></p><br>";
 			echo "<p><label for='function'>Funkcia</label><input type='text' name='function' class='mupdateprof' value='".$row['function']."' ></p><br>";
 			echo '<input type="hidden" name="hidden2" id="hidden2" value="edit" >';
-			echo "<p><input type='submit' class='msubmit' value='Edituj profil'></p><br> </form>";
+			echo "<p><input type='submit' class='btn btn-success' value='Edituj profil'></p><br> </form>";
 
 		}
 
@@ -146,21 +162,35 @@ function profil($id,$iam,$skuska) {
 				$sql = "SELECT * FROM staff WHERE ldapLogin='".$id."'";
 				$result2 = $conn->query($sql);
 				while($row = $result2->fetch_assoc()) {
-					echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['name'].' '.$row['title2'].' '.$row['surname'].'<br> Miestnost: '.$row['room'].'<br> Klapka: '.$row['phone'].'<br>Oddelenie: '.$row['department'].'<br>Popis: '.$row['staffRole'].'</p>';
+					echo "<p class='mname'> ".$row['name']." ".$row['surname']."</p class='mname'><br></p>";
+					echo '<img src="resources/staff_photo/'.$row['photo'].'" width="250"><br>
+					<p><b>Meno:</b> '.$row['title1'].' '.$row['name'].' '.$row['title2'].' '.$row['surname'].'</p><br>
+					<p><b>Miestnost:</b> '.$row['room'].'</p><br> 
+					<p><b>Klapka:</b> '.$row['phone'].'</p><br>
+					<p><b>Oddelenie:</b> '.$row['department'].'</p><br> 
+					<p><b>Popis:</b> '.$row['staffRole'].'<br></p>';
 					$name = $row['ldap'] ;
 					echo "<form action='' method='post'> <table class='mtable' style='text-align: center'>";
 					echo '<input type="hidden" name="hidden" id="hidden" value="edit" >';
-					echo "<input type='submit' class='msubmit' value='Edituj profil'><br> </form>";
+					echo "<input type='submit' class='btn btn-success' value='Edituj profil'><br> </form>";
 				}
 			}
 
 		else{
-			echo '<img src="../resources/staff_photo/'.$row['photo'].'" width="200"><p>Meno: '.$row['title1'].' '.$row['name'].' '.$row['surname'].' '.$row['title2'].' <br> Miestnost: '.$row['room'].'<br> Klapka: '.$row['phone'].'<br>Oddelenie: '.$row['department'].'<br> Popis: '.$row['staffRole'].'</p>';
+			echo " <p class='mname'>".$row['name']." ".$row['surname']."</p class='mname'><br></p>";
+			echo '<img src="resources/staff_photo/'.$row['photo'].'" width="250">
+			<br><p><b>Meno:</b> '.$row['title1'].' '.$row['name'].' '.$row['surname'].' '.$row['title2'].'</p> <br>
+			<p><b>Miestnost:</b> '.$row['room'].'</p><br> 
+			<p><b>Klapka:</b> '.$row['phone'].'</p><br>
+			<p><b>Oddelenie:</b> '.$row['department'].'</p><br> 
+			<p><b>Popis:</b> '.$row['staffRole'].'</p><br>';
 			$name = $row['ldap'];
 			echo "<form action='' method='post'> <table class='mtable' style='text-align: center'>";
 			echo '<input type="hidden" name="hidden" id="hidden" value="edit" >';
+			//print_r($skuska[1]['roles_id']);
+			//var_dump(in_array(5,$skuska));
 			if(($id==$iam)||in_array(5,$skuska)||in_array(2,$skuska)) {
-				echo "<input type='submit' class='msubmit' value='Edituj profil'><br>";
+				echo "<input type='submit' class='btn btn-success' value='Edituj profil'><br>";
 			}
 			else
 			 echo "</form>";
