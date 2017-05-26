@@ -1,17 +1,17 @@
 <?php
-$servername = "147.175.98.153";
-$username = "root";
-$password = "heslo123";
+$servername = "localhost";
+$username = "xkmotorkai";
+$password = "webte2";
 $dbname = "semprojekt";
 
-define("HOSTNAME", "147.175.98.153");
-define("USERNAME", "root");
-define("PASSWORD", "heslo123");
+define("HOSTNAME", "localhost");
+define("USERNAME", "xkmotorkai");
+define("PASSWORD", "webte2");
 define("DBNAME", "semprojekt");
 
 $dbconfig = array(
-    'hostname' => '147.175.98.153',
-    'username' => 'root',
-    'password' => 'heslo123',
+    'hostname' => 'localhost',
+    'username' => 'xkmotorkai',
+    'password' => 'webte2',
     'dbname' => 'semprojekt',
 );
