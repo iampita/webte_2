@@ -1,10 +1,9 @@
 <?php
+
+include_once 'config.php';
+
 class DBController {
 	private $conn = "";
-	private $host = "147.175.98.153";
-	private $user = "root";
-	private $password = "heslo123";
-	private $database = "semprojekt";
 
 	function __construct() {
 		$conn = $this->connectDB();
@@ -14,8 +13,8 @@ class DBController {
 	}
 
 	function connectDB() {
-		$conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
-        $conn->set_charset("utf8mb4");
+		$conn = mysqli_connect(HOSTNAME,USERNAME,PASSWORD,DBNAME);
+        $conn->set_charset('utf8mb4');
 		return $conn;
 	}
 

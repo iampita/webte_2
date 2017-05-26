@@ -33,11 +33,43 @@
     <staff>
         <sk>
             <title>Pracovníci</title>
+            <name>Meno</name>
+            <room>Miestnosť</room>
+            <phone>Klapka</phone>
+            <department>Oddelenie</department>
+            <role>Zaradenie</role>
+            <function>Funkcia</function>
+            <all>zobraz všetko</all>
+            <deptfilter>Filter oddelení:</deptfilter>
+            <rolefilter>Filter zaradenia:</rolefilter>
         </sk>
         <en>
             <title>Staff</title>
+            <name>Name</name>
+            <room>Room</room>
+            <phone>Phone extension</phone>
+            <department>Department</department>
+            <role>Role</role>
+            <function>Function</function>
+            <all>view all</all>
+            <deptfilter>Department filter:</deptfilter>
+            <rolefilter>Role filter:</rolefilter>
         </en>
     </staff>
+    <detail>
+        <sk>
+            <title>Detail pracovníka</title>
+            <goback>&lt;&lt;&lt; Návrat na zoznam</goback>
+            <phone>tel. číslo:</phone>
+            <room>miestnosť</room>
+        </sk>
+        <en>
+            <title>Staff detail</title>
+            <goback>&lt;&lt;&lt; Back to the list</goback>
+            <phone>phone no.:</phone>
+            <room>room</room>
+        </en>
+    </detail>
     <fotogaleria>
         <sk>
             <title>Fotogaléria</title>
