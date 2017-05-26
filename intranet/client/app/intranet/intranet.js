@@ -85,6 +85,23 @@ intranet.controller('mainCtrl',function($scope, $http, fileUpload){
                 else
                     $scope.userRoles[i].roles.push(false);
             }
+            $http.get('../server/get-users.php').then(function(resp){
+                var logins = [];
+                for(var i = 0; i < resp.data.length; i++){
+                    if(resp.data[i].ldapLogin)
+                        logins.push(resp.data[i]);
+                }
+                for(var i = 0; i < unique.length; i++){
+                    logins = _.without(logins, _.findWhere(logins, {id: $scope.userRoles[i].staff_id}));
+                }
+                for(var i = 0; i < logins.length; i++){
+                    $scope.userRoles.push({staff_id: logins[i].id, roles: []});
+                    for(var j = 0; j < 5; j++){
+                        $scope.userRoles[i].roles.push(false);
+                    }
+                }
+                console.log($scope.userRoles);
+            });
         }); 
     }  
     $scope.setRole = function(index, secondIndex, value){
