@@ -162,3 +162,22 @@
         height: 320px;
     }
 }
+@media print{
+
+
+header{
+	display:none;
+	}
+
+	 #bhomeWhat{
+	width: 100%;
+	border-right: 0px;
+	}
+	.bdropDownMenu{
+	display:none;
+	}
+	#homeWhatLine{
+	border-bottom: 0px;
+	border-top: 0px;
+}
+}
