@@ -18,6 +18,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="https://code.angularjs.org/latest/angular.min.js"></script>
+    <script src="https://code.angularjs.org/latest/angular-route.min.js"></script>
     <script src="app/intranet/intranet.js"></script>
     <script src="app/intranet/servis.js"></script>
     
@@ -35,7 +36,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="" ng-click="panel = true">Intranet</a>
+                <a class="navbar-brand" href="#/" ng-click="panel = true">Intranet</a>
             </div>
             <ul class="nav navbar-nav navbar-right" ng-show="!loggedOut"> 
                 <li><a href="../../profile.php?id={{login}}">{{login}}</a></li>
@@ -47,20 +48,353 @@
                 
             </ul>
             <ul class="nav navbar-nav" ng-show="!loggedOut && firstFour">
-                <li><a href="">Pedagogika</a></li>
-                <li><a href="">Doktorandi</a></li>
-                <li><a href="">Publikácie</a></li>
-                <li><a href="">Služobné cesty</a></li>
+                <li><a href="" ng-click="editStateChange('pedagogika')">Pedagogika</a></li>
+                <li><a href="" ng-click="editStateChange('doktorandi')">Doktorandi</a></li>
+                <li><a href="" ng-click="editStateChange('publikacia')">Publikácie</a></li>
+                <li><a href="" ng-click="editStateChange('sluzobne')">Služobné cesty</a></li>
             </ul>
             <ul class="nav navbar-nav" ng-show="!loggedOut && purchases">
-                <li><a href="">Nákupy</a></li>
+                <li><a href="nakupy.php">Nákupy</a></li>
             </ul>
             <ul class="nav navbar-nav" ng-show="!loggedOut && attendance">
                 <li><a href="../z1/client/index.html">Dochádzka</a></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="" ng-click="setTasks()">Rozdelenie úloh</a></li>
+            </ul>
             
         </div>
     </nav>
+    <div ng-show="tasks">
+        <h3>Rozdelenie úloh</h3>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <td>Alena Kostuňová</td>
+                <td>yskum - projekty, vyskum - vyskumne oblasti, pracovnici, kontakt, pata stranky, databaza, dizajn a dvojjazycnost</td>
+            </tr>
+            <tr>
+                <td>Barbora Jahodníková</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Martin Bachratý</td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>Ivan Kmotorka</td>
+                <td>Intranet - panely, dochádzka, login, logout pedagogika, doktorandi, publikácie, služobné cesty, rozdelenie úloh, databáza</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div ng-show="editCategory && !panel && edits.pedagogika">
+        <h3>Pridať kategóriu</h3>
+        <div class="file-upload">
+            <div class="col-md-3 form-group">
+                <label for="title">Názov:</label>
+                <input class="form-control" name="title" type="text" ng-model="fileForm.title" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="desc">Popis:</label>
+                <input class="form-control" name="desc" type="text" ng-model="fileForm.desc" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="pickFile">Vyber súbor:</label>
+                <input name="pickFile" class="form-control" type="file" file-model="myFile" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="button">Ulož záznam:</label>
+                <button name="button" class="btn btn-success form-control" ng-click="uploadFile('pedagogika')" ng-disabled="!editCategory">Pridať</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="editCategory && !panel && edits.doktorandi">
+        <h3>Pridať kategóriu</h3>
+        <div class="file-upload">
+            <div class="col-md-3 form-group">
+                <label for="title">Názov:</label>
+                <input class="form-control" name="title" type="text" ng-model="fileForm.title" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="desc">Popis:</label>
+                <input class="form-control" name="desc" type="text" ng-model="fileForm.desc" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="pickFile">Vyber súbor:</label>
+                <input name="pickFile" class="form-control" type="file" file-model="myFile2" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="button">Ulož záznam:</label>
+                <button name="button" class="btn btn-success form-control" ng-click="uploadFile('doktorandi')" ng-disabled="!editCategory">Pridať</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="editCategory && !panel && edits.publikacia">
+        <h3>Pridať kategóriu</h3>
+        <div class="file-upload">
+            <div class="col-md-3 form-group">
+                <label for="title">Názov:</label>
+                <input class="form-control" name="title" type="text" ng-model="fileForm.title" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="desc">Popis:</label>
+                <input class="form-control" name="desc" type="text" ng-model="fileForm.desc" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="pickFile">Vyber súbor:</label>
+                <input name="pickFile" class="form-control" type="file" file-model="myFile3" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="button">Ulož záznam:</label>
+                <button name="button" class="btn btn-success form-control" ng-click="uploadFile('publikacia')" ng-disabled="!editCategory">Pridať</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="editCategory && !panel && edits.sluzobne">
+        <h3>Pridať kategóriu</h3>
+        <div class="file-upload">
+            <div class="col-md-3 form-group">
+                <label for="title">Názov:</label>
+                <input class="form-control" name="title" type="text" ng-model="fileForm.title" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="desc">Popis:</label>
+                <input class="form-control" name="desc" type="text" ng-model="fileForm.desc" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="pickFile">Vyber súbor:</label>
+                <input name="pickFile" class="form-control" type="file" file-model="myFile4" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="button">Ulož záznam:</label>
+                <button name="button" class="btn btn-success form-control" ng-click="uploadFile('sluzobne')" ng-disabled="!editCategory">Pridať</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div ng-show="!panel && edits.pedagogika">
+        <table class="table table-striped table-bordered" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Kategória</th>
+                    <th>Popis</th>
+                    <th>Stiahnúť</th>
+                    <th>Zmazať záznam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="categ in categories track by $index">
+                    <td>{{categ.name}}</td>
+                    <td>{{categ.description}}</td>
+                    <td><a href="../../uploadedFiles/{{categ.fileName}}" download>{{categ.fileName}}</a></td>
+                    <td><button class="btn btn-danger" ng-click="deleteCategory($index, 'pedagogika')" ng-disabled="!editCategory">Zmazať</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="!panel && edits.doktorandi">
+        <table class="table table-striped table-bordered" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Kategória</th>
+                    <th>Popis</th>
+                    <th>Stiahnúť</th>
+                    <th>Zmazať záznam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="categ in categories track by $index">
+                    <td>{{categ.name}}</td>
+                    <td>{{categ.description}}</td>
+                    <td><a href="../../uploadedFiles/{{categ.fileName}}" download>{{categ.fileName}}</a></td>
+                    <td><button class="btn btn-danger" ng-click="deleteCategory($index, 'doktorandi')" ng-disabled="!editCategory">Zmazať</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="!panel && edits.publikacia">
+        <table class="table table-striped table-bordered" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Kategória</th>
+                    <th>Popis</th>
+                    <th>Stiahnúť</th>
+                    <th>Zmazať záznam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="categ in categories track by $index">
+                    <td>{{categ.name}}</td>
+                    <td>{{categ.description}}</td>
+                    <td><a href="../../uploadedFiles/{{categ.fileName}}" download>{{categ.fileName}}</a></td>
+                    <td><button class="btn btn-danger" ng-click="deleteCategory($index, 'publikacia')" ng-disabled="!editCategory">Zmazať</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="!panel && edits.sluzobne">
+        <table class="table table-striped table-bordered" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Kategória</th>
+                    <th>Popis</th>
+                    <th>Stiahnúť</th>
+                    <th>Zmazať záznam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="categ in categories track by $index">
+                    <td>{{categ.name}}</td>
+                    <td>{{categ.description}}</td>
+                    <td><a href="../../uploadedFiles/{{categ.fileName}}" download>{{categ.fileName}}</a></td>
+                    <td><button class="btn btn-danger" ng-click="deleteCategory($index, 'sluzobne')" ng-disabled="!editCategory">Zmazať</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="editCategory && !panel && edits.pedagogika">
+        <h3>Pridať odkaz</h3>
+        <div class="file-upload">
+            <div class="col-md-4 form-group">
+                <label for="title">Názov:</label>
+                <input class="form-control" name="title" type="text" ng-model="link.name" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="desc">Popis:</label>
+                <input class="form-control" name="desc" type="text" ng-model="link.url" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="button">Ulož záznam:</label>
+                <button name="button" class="btn btn-success form-control" ng-click="saveLink('pedagogika')" ng-disabled="!editCategory">Pridať</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="editCategory && !panel && edits.doktorandi">
+        <h3>Pridať odkaz</h3>
+        <div class="file-upload">
+            <div class="col-md-4 form-group">
+                <label for="title">Názov:</label>
+                <input class="form-control" name="title" type="text" ng-model="link.name" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="desc">Popis:</label>
+                <input class="form-control" name="desc" type="text" ng-model="link.url" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="button">Ulož záznam:</label>
+                <button name="button" class="btn btn-success form-control" ng-click="saveLink('doktorandi')" ng-disabled="!editCategory">Pridať</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="editCategory && !panel && edits.publikacia">
+        <h3>Pridať odkaz</h3>
+        <div class="file-upload">
+            <div class="col-md-4 form-group">
+                <label for="title">Názov:</label>
+                <input class="form-control" name="title" type="text" ng-model="link.name" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="desc">Popis:</label>
+                <input class="form-control" name="desc" type="text" ng-model="link.url" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="button">Ulož záznam:</label>
+                <button name="button" class="btn btn-success form-control" ng-click="saveLink('publikacia')" ng-disabled="!editCategory">Pridať</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="editCategory && !panel && edits.sluzobne">
+        <h3>Pridať odkaz</h3>
+        <div class="file-upload">
+            <div class="col-md-4 form-group">
+                <label for="title">Názov:</label>
+                <input class="form-control" name="title" type="text" ng-model="link.name" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="desc">Popis:</label>
+                <input class="form-control" name="desc" type="text" ng-model="link.url" ng-disabled="!editCategory">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="button">Ulož záznam:</label>
+                <button name="button" class="btn btn-success form-control" ng-click="saveLink('sluzobne')" ng-disabled="!editCategory">Pridať</button>
+            </div>
+        </div>
+    </div>
+    
+    <div ng-show="!panel && edits.pedagogika">
+        <table class="table table-striped table-bordered" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Destinácia</th>
+                    <th>Link</th>
+                    <th>Zmazať záznam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="link in links track by $index">
+                    <td>{{link.destName}}</td>
+                    <td><a href="{{link.url}}" target="_blank">prejsť na adresu</a></td>
+                    <td><button class="btn btn-danger" ng-click="deleteLink($index, 'pedagogika')" ng-disabled="!editCategory">Zmazať</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="!panel && edits.doktorandi">
+        <table class="table table-striped table-bordered" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Destinácia</th>
+                    <th>Link</th>
+                    <th>Zmazať záznam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="link in links track by $index">
+                    <td>{{link.destName}}</td>
+                    <td><a href="{{link.url}}" target="_blank">prejsť na adresu</a></td>
+                    <td><button class="btn btn-danger" ng-click="deleteLink($index, 'doktorandi')" ng-disabled="!editCategory">Zmazať</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="!panel && edits.publikacia">
+        <table class="table table-striped table-bordered" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Destinácia</th>
+                    <th>Link</th>
+                    <th>Zmazať záznam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="link in links track by $index">
+                    <td>{{link.destName}}</td>
+                    <td><a href="{{link.url}}" target="_blank">prejsť na adresu</a></td>
+                    <td><button class="btn btn-danger" ng-click="deleteLink($index, 'publikacia')" ng-disabled="!editCategory">Zmazať</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="!panel && edits.sluzobne">
+        <table class="table table-striped table-bordered" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Destinácia</th>
+                    <th>Link</th>
+                    <th>Zmazať záznam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="link in links track by $index"> 
+                    <td>{{link.destName}}</td>
+                    <td><a href="{{link.url}}" target="_blank">prejsť na adresu</a></td>
+                    <td><button class="btn btn-danger" ng-click="deleteLink($index, 'sluzobne')" ng-disabled="!editCategory">Zmazať</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
     <div ng-show="loggedOut">
         <form name="ldapLogin" class="form-horizontal">
             <div class="form-group">
@@ -105,7 +439,7 @@
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="pickFile">Vyber súbor:</label>
-                    <input name="pickFile" class="form-control" type="file" file-model="myFile" ng-disabled="!mediaUpload">
+                    <input name="pickFile" class="form-control" type="file" file-model="myFile1" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="button">Uploadni súbor na server:</label>

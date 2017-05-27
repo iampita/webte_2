@@ -1,11 +1,15 @@
 intranet.service('fileUpload', ['$http', function ($http) {
     this.uploadFileToUrl = function (file, uploadUrl, fileForm, scope) {
         var fd = new FormData();
+        console.log(file);
         fd.append('file', file);
         fd.append('folder', fileForm.folderName);
         fd.append('date', fileForm.date);
         fd.append('skTitle', fileForm.skTitle);
         fd.append('enTitle', fileForm.enTitle);
+        fd.append('title', fileForm.title);
+        fd.append('desc', fileForm.desc);
+        fd.append('pageName', fileForm.pageName); 
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: {
@@ -13,7 +17,7 @@ intranet.service('fileUpload', ['$http', function ($http) {
                 'Process-Data': false
             }
         }).then(function (res) {
-            console.log(res);
+            scope.categories = _.sortBy(res.data, 'name');
         });
     }
  }]);

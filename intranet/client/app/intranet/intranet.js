@@ -1,6 +1,15 @@
-var intranet = angular.module('intranet',[]);
+var intranet = angular.module('intranet',['ngRoute']);
 
 intranet.controller('mainCtrl',function($scope, $http, fileUpload){
+    $scope.tasks = false;
+    $scope.setTasks = function(){
+        $scope.tasks = true;
+        $scope.panel = false;
+        $scope.edits.publikacia = false;
+        $scope.edits.doktorandi = false;
+        $scope.edits.pedagogika = false;
+        $scope.edits.sluzobne = false;
+    }
     $http({
         method: "get",
         url: "../server/checksessions.php"
@@ -19,6 +28,7 @@ intranet.controller('mainCtrl',function($scope, $http, fileUpload){
             $scope.loggedOut = false;
         }
         var roles = data.roles;
+        $scope.roles = roles;
         $scope.firstFour = false;
         $scope.purchases = false;
         $scope.attendance = true;
@@ -36,9 +46,12 @@ intranet.controller('mainCtrl',function($scope, $http, fileUpload){
         }
         if(_.findWhere(roles, {roles_id: "3"})){
             $scope.mediaUpload = true;
+            $scope.panel = true;
         }
         if(_.findWhere(roles, {roles_id: "4"})){
             $scope.firstFour = true;
+            $scope.purchases = true;
+            $scope.editCategory = true;
         }
         if(_.findWhere(roles, {roles_id: "5"})){
             $scope.firstFour = true;
@@ -46,6 +59,7 @@ intranet.controller('mainCtrl',function($scope, $http, fileUpload){
             $scope.userEdit = true;
             $scope.roleEdit = true;
             $scope.mediaUpload = true;
+            $scope.editCategory = true;
             getUsers();
             getUserRoles();
         }
@@ -167,16 +181,82 @@ intranet.controller('mainCtrl',function($scope, $http, fileUpload){
             setPage(resp.data);
         });
     }
+    $scope.edits = {};
+    function getCategs(option){
+        $http.post('../server/get-categs.php',{pageName:option}).then(function(res){
+                if(res.data == "false"){
+                $scope.categories = [];
+            }
+            else 
+                $scope.categories = _.sortBy(res.data, 'name');
+        });
+    }
+    function getLinks(option){
+        $http.post('../server/get-links.php',{pageName:option}).then(function(res){
+            console.log(res.data);
+            if(res.data == "false"){
+                $scope.links = [];
+            }
+            else 
+                $scope.links = _.sortBy(res.data, 'destName');
+        });
+    }
+    $scope.editStateChange = function(option){
+        $scope.panel = false;
+        if(option == 'publikacia'){
+            $scope.edits.publikacia = true;
+            $scope.edits.doktorandi = false;
+            $scope.edits.pedagogika = false;
+            $scope.edits.sluzobne = false;
+            getCategs(option);
+            getLinks(option)
+        }
+        else if(option == 'doktorandi'){
+            $scope.edits.publikacia = false;
+            $scope.edits.doktorandi = true;
+            $scope.edits.pedagogika = false;
+            $scope.edits.sluzobne = false;
+            getCategs(option);
+            getLinks(option)
+        }
+        else if(option == 'pedagogika'){
+            $scope.edits.publikacia = false;
+            $scope.edits.doktorandi = false;
+            $scope.edits.pedagogika = true;
+            $scope.edits.sluzobne = false;
+            getCategs(option);
+            getLinks(option)
+        }
+        else if(option == 'sluzobne'){
+            $scope.edits.publikacia = false;
+            $scope.edits.doktorandi = false;
+            $scope.edits.pedagogika = false;
+            $scope.edits.sluzobne = true;
+            getCategs(option);
+            getLinks(option)
+        }
+    }
     
     $scope.fileForm = {};
     $scope.fileForm.folderName = "";
     $scope.fileForm.enTitle = "";
     $scope.fileForm.skTitle = "";
     $scope.fileForm.date = "RRRR-MM-DD";
-    
-    $scope.uploadFile = function () {
-        var file = $scope.myFile; 
-
+    $scope.fileForm.title = "";
+    $scope.fileForm.desc = "";
+    $scope.uploadFile = function (pageName) {
+        var file;
+        if (pageName == 'pedagogika')
+            file = $scope.myFile; 
+        else if(!pageName)
+            file = $scope.myFile1;
+        else if(pageName == 'doktorandi')
+            file = $scope.myFile2; 
+        else if(pageName == 'publikacia')
+            file = $scope.myFile3;
+        else if(pageName == 'sluzobne')
+            file = $scope.myFile4;
+        $scope.fileForm.pageName = pageName || "";
         var uploadUrl = "../server/upload-file.php";
         fileUpload.uploadFileToUrl(file, uploadUrl, $scope.fileForm, $scope);
     };
@@ -188,6 +268,36 @@ intranet.controller('mainCtrl',function($scope, $http, fileUpload){
     $scope.saveVideo = function(){
         $http.post('../server/save-video.php',{title: $scope.videoForm.title, url:$scope.videoForm.url, type: $scope.videoForm.type }).then(function(resp){
             console.log(resp);
+        });
+    }
+    
+    $scope.link = {};
+    $scope.link.name = "";
+    $scope.link.url = "";
+    $scope.saveLink = function(option){
+        $http.post('../server/post-link.php',{pageName: option, destName: $scope.link.name, url: $scope.link.url}).then(function(res){
+            $scope.links = _.sortBy(res.data, 'destName');
+            console.log(res.data);
+        });
+    }
+    $scope.deleteCategory = function(index, option){
+        $http.post('../server/delete-category.php', {pageName: option, name: $scope.categories[index].name, description: $scope.categories[index].description, fileName: $scope.categories[index].fileName}).then(function(res){
+            console.log(res.data);
+            if(res.data == "false"){
+                $scope.categories = [];
+            }
+            else 
+                $scope.categories = _.sortBy(res.data, 'name');
+        });
+    }
+    $scope.deleteLink = function(index, option){
+        $http.post('../server/delete-link.php', {pageName: option, destName: $scope.links[index].destName, url: $scope.links[index].url}).then(function(res){
+            console.log(res.data);
+            if(res.data == "false"){
+                $scope.links = [];
+            }
+            else 
+                $scope.links = _.sortBy(res.data, 'destName');
         });
     }
 });
