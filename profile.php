@@ -141,7 +141,7 @@ function profil($id,$iam,$skuska) {
 			echo "<p><label for='staffRole'>Zamestnanie</label><input type='text' name='staffRole' class='mupdateprof' value='".$row['staffRole']."' ></p><br>";
 			echo "<p><label for='function'>Funkcia</label><input type='text' name='function' class='mupdateprof' value='".$row['function']."' ></p><br>";
 			echo '<input type="hidden" name="hidden2" id="hidden2" value="edit" >';
-			echo "<p><input type='submit' class='btn btn-success' value='Edituj profil'></p><br> </form>";
+			echo "<p><input type='submit' class='btn btn-success' value='Ulož'></p><br> </form>";
 
 		}
 

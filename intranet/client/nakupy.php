@@ -91,6 +91,7 @@
     $sql2 = "SELECT * FROM nakupy";
     $result = $conn->query($sql2);
 while($row=$result->fetch_assoc()){
+    
         echo $row['content'];
     }
 
@@ -99,7 +100,13 @@ while($row=$result->fetch_assoc()){
     </textarea>
 
         <p>
-            <input value="Ulož" type="submit">
+        <?php if(isset($_SESSION['username'])){
+
+          
+          echo ' <input value="Ulož" type="submit">';
+
+        }
+        ?>
         </p>
     </form>
 
