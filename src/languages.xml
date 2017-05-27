@@ -56,7 +56,7 @@
             <rolefilter>Role filter:</rolefilter>
         </en>
     </staff>
-    <detail>
+    <staffDetail>
         <sk>
             <title>Detail pracovníka</title>
             <goback>&lt;&lt;&lt; Návrat na zoznam</goback>
@@ -69,7 +69,7 @@
             <phone>phone no.:</phone>
             <room>room</room>
         </en>
-    </detail>
+    </staffDetail>
     <projects>
         <sk>
             <title>Projekty</title>

@@ -2,6 +2,8 @@
 include_once './src/Translator.php';
 include_once './src/Staff.php';
 
+isset($_SESSION['lang']) ? null : $_SESSION['lang'] = 'sk';
+
 $page = Translator::getSite();
 $translation = Translator::translate($page[0], $_GET['lang'])
 ?>
@@ -25,12 +27,24 @@ $translation = Translator::translate($page[0], $_GET['lang'])
         if($lang == 'en')
             include_once 'menu/menuEN.php';
         else include 'menu/menu.php';?>
-        <a href="javascript:history.back()"><?php echo $translation->goback;?></a>
-        <h1><?php echo $translation->title;?></h1>
+
+        <a href="staff.php"><?php echo $translation->goback;?></a>
+        <div class="atitle"><h1><?php echo $translation->title;?></h1></div>
         <?php
             $staff = new Staff();
-            $result = $staff->getdetail($_GET['name'], $_GET['surname']);
-            $dept = $staff->getdepartment($result[0]['department']);
+
+            if(isset($_GET['name'])) {
+                $staffName = $_GET['name'];
+                $staffSurname = $_GET['surname'];
+                $_SESSION['name'] = $staffName;
+                $_SESSION['surname'] = $staffSurname;
+            } else {
+                $staffName = $_SESSION['name'];
+                $staffSurname = $_SESSION['surname'];
+            }
+
+            $result = $staff->getDetail($staffName, $staffSurname);
+            $dept = $staff->getDepartment($result[0]['department']);
 
             $result[0]['photo'] == null ?
                 $photo = 'http://147.175.98.153/semprojtim17/resources/staff_photo/no_photo.jpg' :

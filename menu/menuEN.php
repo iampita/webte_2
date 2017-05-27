@@ -5,7 +5,7 @@
         <li><a href="study.php">Study</a></li>
         <li><a href="#">Research</a>
             <ul>
-                <li><a href="#">Projects</a></li>
+                <li><a href="projects.php">Projects</a></li>
                 <li><a href="#">Research topics</a>
                     <ul>
                         <li><a href="#">Elektronická motokára</a></li>

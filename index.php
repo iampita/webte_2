@@ -1,5 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include_once './src/Translator.php';
+
+isset($_SESSION['lang']) ? null : $_SESSION['lang'] = 'sk';
+
+$page = Translator::getSite();
+$translation = Translator::translate($page[0], $_SESSION['lang']);
+?>
+
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
