@@ -67,7 +67,6 @@ margin-left: 58px;
 	font-size: 40px;
 }
 img{
-
 	margin-bottom: 20px;
 }
 
