@@ -149,17 +149,80 @@ td > div, th > div {
     text-align: right;
 }
 
+.afilter.right {
+    float: right;
+}
+
+.afilter.left {
+    display: inline;
+}
 
 @media screen and (max-width: 667px) {
     body{
         margin: 2px;
     }
-    #map{
-        width: 50%;
-    }
-    .flex-links{
-        width: 45%
-    }#imgCar{
+
+    #imgCar{
          width: 300px;
+         }
+
+     .flex-container{
+         flex-direction: column;
      }
+
+     .flex-links {
+         width: 100%;
+     }
+
+    .flex-map {
+        width: 100%;
+    }
+
+    #map {
+        width: 100%;
+    }
+
+    .atitle {
+        text-align: center;
+    }
+
+    .afilter.aright {
+        display: inherit;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    body{
+        margin: 2px;
+    }
+
+    #imgCar{
+        width: 300px;
+    }
+
+    .flex-container{
+        flex-direction: column;
+    }
+
+    .flex-links {
+        width: 100%;
+    }
+
+    .flex-map {
+        width: 100%;
+    }
+
+    #map {
+        width: 100%;
+    }
+
+    .atitle {
+        text-align: center;
+    }
+
+    .afilter.aright {
+        display: inherit;
+        float: left;
+    }
 }

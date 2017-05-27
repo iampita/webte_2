@@ -2,8 +2,10 @@
 include_once './src/Translator.php';
 include_once './src/Projects.php';
 
+isset($_SESSION['lang']) ? null : $_SESSION['lang'] = 'sk';
+
 $page = Translator::getSite();
-$translation = Translator::translate($page[0], $_GET['lang'])
+$translation = Translator::translate($page[0], $_SESSION['lang']);
 ?>
 
 <html>
@@ -20,18 +22,31 @@ $translation = Translator::translate($page[0], $_GET['lang'])
         <link rel="stylesheet" href="src/main.css">
     </head>
     <body>
-        <?php include 'menu/menu.php';?>
-        <a href="javascript:history.back()"><?php echo $translation->goback;?></a>
-        <h1><?php echo $translation->title;?></h1>
+        <?php include 'src/header.php';
+        isset($_SESSION['lang']) ? $lang = $_SESSION['lang'] : $lang = 'sk';
+        if($lang == 'en')
+            include_once 'menu/menuEN.php';
+        else include 'menu/menu.php';?>
+
+        <a href="projects.php"><?php echo $translation->goback;?></a>
+        <div class="atitle"><h1><?php echo $translation->title;?></h1></div>
         <?php
         $projects = new Projects();
-        $result = $projects->getDetail($_GET['id']);
+
+        if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $_SESSION['id'] = $id;
+        } else {
+            $id = $_SESSION['id'];
+        }
+
+        $result = $projects->getDetail($id);
 
         $_SESSION['lang'] == 'en' ?
             $title = $result[0]['titleEN'] :
             $title = $result[0]['titleSK'];
 
-        $_SESSION['lang'] == 'sk' ?
+        $_SESSION['lang'] == 'en' ?
             $annotation = $result[0]['annotationEN'] :
             $annotation = $result[0]['annotationSK'];
 

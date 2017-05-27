@@ -1,8 +1,10 @@
 <?php
 include_once './src/Translator.php';
 
+isset($_SESSION['lang']) ? null : $_SESSION['lang'] = 'sk';
+
 $page = Translator::getSite();
-$translation = Translator::translate($page[0], $_GET['lang'])
+$translation = Translator::translate($page[0], $_SESSION['lang']);
 ?>
 
 <html>
@@ -17,7 +19,6 @@ $translation = Translator::translate($page[0], $_GET['lang'])
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="src/main.css">
     </head>
-    <body>
         <?php
         include 'src/header.php';
         isset($_SESSION['lang']) ? $lang = $_SESSION['lang'] : $lang = 'sk';
@@ -25,7 +26,7 @@ $translation = Translator::translate($page[0], $_GET['lang'])
             include_once 'menu/menuEN.php';
         else include 'menu/menu.php'
         ;?>
-        <h1><?php echo $translation->title;?></h1>
+        <div class="atitle"><h1><?php echo $translation->title;?></h1></div>
         <div class="flex-container">
             <div class="kontakt flex-links" id="ustav">
                 <?php echo $translation->institute;?><br>

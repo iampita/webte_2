@@ -2,6 +2,8 @@
 include_once './src/Translator.php';
 include_once './src/Staff.php';
 
+isset($_SESSION['lang']) ? null : $_SESSION['lang'] = 'sk';
+
 $page = Translator::getSite();
 $translation = Translator::translate($page[0], $_GET['lang'])
 ?>
@@ -41,7 +43,7 @@ $translation = Translator::translate($page[0], $_GET['lang'])
                     td2 = tr[i].getElementsByTagName("td")[4];
                     if (td1 && td2) {
                         if (dept == '' && role == ''){
-                            tr[i].style.display = "none";
+                            tr[i].style.display = "";
                         } else if(dept == '') {
                             if(td2.innerText.toUpperCase().replace(/\s/g, '') == role) tr[i].style.display = "";
                             else tr[i].style.display = "none";
@@ -67,23 +69,23 @@ $translation = Translator::translate($page[0], $_GET['lang'])
             include_once 'menu/menuEN.php';
         else include 'menu/menu.php';?>
 
-        <h1><?php echo $translation->title;?></h1>
+        <div class="atitle"><h1><?php echo $translation->title;?></h1></div>
         <?php
             $staff = new Staff();
-            $result = $staff->getall();
+            $result = $staff->getAll();
 
             $deptfilter = [];
             $rolefilter = [];
             foreach($result as $row) {
                 if (!in_array($row['department'], $deptfilter, true)) {
-                    array_push($deptfilter, $row['department']);
+                    if (substr($row['department'], -1) != " ") array_push($deptfilter, $row['department']);
                 }
                 if (!in_array($row['staffRole'], $rolefilter, true)) {
                     array_push($rolefilter, $row['staffRole']);
                 }
             }
 
-            echo "<div style='display: inline'>
+            echo "<div class='afilter aleft'>
                     {$translation->deptfilter}
                     <select onchange='tableFilter(this, 3);'>
                         <option value=''>{$translation->all}</option>";
@@ -91,7 +93,7 @@ $translation = Translator::translate($page[0], $_GET['lang'])
                 echo "<option value='{$entry}'>{$entry}</option>";
             }
             echo "</select></div>";
-            echo "<div style='float: right'>
+            echo "<div class='afilter aright'>
                     {$translation->rolefilter}
                     <select onchange='tableFilter(this, 4);'>
                         <option value=''>{$translation->all}</option>";
@@ -99,6 +101,7 @@ $translation = Translator::translate($page[0], $_GET['lang'])
                 echo "<option value='{$entry}'>{$entry}</option>";
             }
             echo "</select></div>";
+
             echo "<div>
                     <table id='staffTable' class='tablesorter'>
                         <thead>
@@ -183,7 +186,7 @@ $translation = Translator::translate($page[0], $_GET['lang'])
             function displayDetail(name){
                 name = name.replace(/\s+/g, '');
                 name = name.split(',');
-                var url = 'detail.php?name='+name[1]+'&surname='+name[0];
+                var url = 'staffDetail.php?name='+name[1]+'&surname='+name[0];
                 window.location.href = url;
             }
         </script>
