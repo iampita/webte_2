@@ -70,6 +70,44 @@
             <room>room</room>
         </en>
     </detail>
+    <projects>
+        <sk>
+            <title>Projekty</title>
+            <projno>Číslo projektu</projno>
+            <projname>Názov projektu</projname>
+            <projtime>Doba riešenia</projtime>
+            <projcoord>Zodpovedný riešiteľ</projcoord>
+        </sk>
+        <en>
+            <title>Projects</title>
+            <projno>Project number</projno>
+            <projname>Project name</projname>
+            <projtime>Project duration</projtime>
+            <projcoord>Project coordinator</projcoord>
+        </en>
+    </projects>
+    <projectDetail>
+        <sk>
+            <title>Detail projektu</title>
+            <goback>&lt;&lt;&lt; Návrat na zoznam</goback>
+            <type>Typ projektu:</type>
+            <number>Číslo projektu:</number>
+            <projtitle>Názov projektu:</projtitle>
+            <duration>Doba riešenia:</duration>
+            <coordinator>Zodpovedný riešiteľ:</coordinator>
+            <annotation>Anotácia:</annotation>
+        </sk>
+        <en>
+            <title>Staff detail</title>
+            <goback>&lt;&lt;&lt; Back to the list</goback>
+            <type>Project type:</type>
+            <number>Project number:</number>
+            <projtitle>Project title:</projtitle>
+            <duration>Project duration:</duration>
+            <coordinator>Coordinator:</coordinator>
+            <annotation>Annotation:</annotation>
+        </en>
+    </projectDetail>
     <fotogaleria>
         <sk>
             <title>Fotogaléria</title>
