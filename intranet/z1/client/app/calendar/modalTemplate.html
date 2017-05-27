@@ -1,0 +1,54 @@
+<div class="modal fade">  
+    <div class="modal-dialog">  
+        <div class="modal-content">  
+            <div class="modal-header">  
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>  
+                <h4 class="modal-title">{{ employees[buttonClicked].name + " " + employees[buttonClicked].surname}} </h4>  
+            </div>  
+            <div class="modal-body">
+                <table class="table-bordered table-hover">
+                    <thead>
+                        <th ng-repeat="i in days track by $index" ng-class="{'bg-warning': ($index+currDay+1) % 7 == 0 || ($index+currDay) % 7 == 0, 'small-table':true}"><p>{{1+$index}}.</p><p class="day-name">{{nameddays[($index+currDay) % 7].name}}</p></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="small-table" ng-repeat="i in days track by $index" ng-class="{'red':sickLeave($index, buttonClicked),'orange':famMemCare($index, buttonClicked), 'green':businessTrip($index,buttonClicked), 'blue':holiday($index,buttonClicked), 'grey':holidayPlan($index,buttonClicked), 'cell':true}" ng-mouseover="applyAbsenceOption($event, buttonClicked, $index)" ng-mousedown="md()" ng-mouseup = "mu()" ng-click="applyAbsenceOption($event, buttonClicked, $index)" ></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                
+                <div class="small-legend-box">
+                    <div class="small-legend-element">
+                        <div class="small-legend red" ng-click="changeAbsenceOption($event)">
+                        </div>
+                        <p>PN</p>
+                    </div>
+                    <div class="small-legend-element">
+                        <div class="small-legend orange" ng-click="changeAbsenceOption($event)">
+                        </div>
+                        <p>OČR</p>
+                    </div>
+                    <div class="small-legend-element">
+                        <div class="small-legend green" ng-click="changeAbsenceOption($event)">
+                        </div>
+                        <p>SC</p>
+                    </div>
+                    <div class="small-legend-element">
+                        <div class="small-legend blue" ng-click="changeAbsenceOption($event)">
+                        </div>
+                        <p>D</p>
+                    </div>
+                    <div class="small-legend-element">
+                        <div class="small-legend grey" ng-click="changeAbsenceOption($event)">
+                        </div>
+                        <p>PD</p>
+                    </div>
+                    <div class="purple small-save" ng-click="save()">
+                            Uložiť
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>  
+</div>

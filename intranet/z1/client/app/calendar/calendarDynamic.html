@@ -1,0 +1,33 @@
+<div ng-controller="calendarDynamicCtrl" ng-mouseup="mu()">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <th>Celé meno | dni</th>
+            <th ng-repeat="i in days track by $index" ng-class="{'bg-warning': ($index+currDay+1) % 7 == 0 || ($index+currDay) % 7 == 0,'big-table-header':true}"><p>{{1+$index}}.</p><p class="day-name">{{nameddays[($index+currDay) % 7].name}}</p></th>
+        </thead>
+        <tbody>
+            
+            <tr ng-repeat="employee in employees track by $index">
+                <td ng-click="toggleModal($index)" class="bg-info employees">{{employee.surname + " " + employee.name}}</td>
+                <td ng-repeat="i in days track by $index" ng-class="{'red':sickLeave($index, $parent.$index),'orange':famMemCare($index, $parent.$index), 'green':businessTrip($index,$parent.$index), 'blue':holiday($index,$parent.$index), 'grey':holidayPlan($index,$parent.$index), 'cell':true}" ng-mouseover="applyAbsenceOption($event, $parent.$index, $index)" ng-mousedown="md()" ng-mouseup = "mu()" ng-click="applyAbsenceOption($event, $parent.$index, $index)"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-lg-2">
+        <select class="form-control" ng-change="updateStaticTable()" ng-model="selectedMonth" ng-options="m.name for m in months">
+        </select>
+    </div>
+    <div class="col-lg-2">
+        <select class="form-control" ng-change="updateStaticTable()" ng-model="selectedYear" ng-options="y for y in calYears">
+        </select>
+    </div>
+    <button class="btn red col-md-1" ng-click="changeAbsenceOption($event)" ng-disabled="!editAll">PN</button>
+    <button class="btn orange col-md-1" ng-click="changeAbsenceOption($event)" ng-disabled="!editAll">OČR</button>
+    <button class="btn green col-md-1" ng-click="changeAbsenceOption($event)" ng-disabled="!editAll">Služobná cesta</button>
+    <button class="btn blue col-md-1" ng-click="changeAbsenceOption($event)" ng-disabled="!editAll">Dovolenka</button>
+    <button class="btn grey col-md-1" ng-click="changeAbsenceOption($event)" ng-disabled="!editAll && !editPlan">Plán dovolenky</button>
+    <p class="col-md-1">{{selectedOption}}</p>
+    <button class="btn purple col-md-1" ng-click="save()">Uložiť zmeny</button>
+    
+    <modal visible="showModal" ng-show="editAll || editPlan">
+    </modal>
+</div>

@@ -20,6 +20,12 @@ function fetchStaffRoles($conn, $id){
     return $request->execute() ? $request->fetchAll() : false;
 //    return $request->execute(array(':id' => $id)) ? $request->fetch() : false;
 }
+function fetchStaffAbs($conn){
+    $request = $conn->prepare(" SELECT staff_id, absence_id, date FROM staff_absence");
+    $request->setFetchMode(PDO::FETCH_ASSOC);
+    return $request->execute() ? $request->fetchAll() : false;
+//    return $request->execute(array(':id' => $id)) ? $request->fetch() : false;
+}
 
 function updateStaff($conn, $id, $name, $surname, $title1, $title2, $ldapLogin, $room, $phone, $department, $staffRole, $function){
     $stmt = $conn->prepare("update staff set name = :name, surname = :surname, title1 = :title1, title2 = :title2, ldapLogin = :ldapLogin, room = :room, phone = :phone, department = :department, staffRole = :staffRole, function = :function where id = :id");
@@ -82,27 +88,15 @@ function saveVideo($conn, $title, $url, $type){
 //    return $request->execute() ? $request->fetchAll() : false;
 //}
 
-function fetchAbsences( $conn ){
-    $request = $conn->prepare(" SELECT id, type FROM absence");
-    $request->setFetchMode(PDO::FETCH_ASSOC);
-    return $request->execute() ? $request->fetchAll() : false;
-}
-
-function fetchAbsence( $conn, $id ){
-    $request = $conn->prepare(" SELECT id, type FROM absence where id = :id");
-    $request->setFetchMode(PDO::FETCH_ASSOC);
-    return $request->execute(array(':id' => $id)) ? $request->fetch() : false;
-}
-
-function createEmpAbsRecord($conn, $empId, $absId, $date){
-    $stmt = $conn->prepare("INSERT INTO employee_absence (employee_id, absence_id, date) VALUES (:employee_id, :absence_id, :date)");
-    $stmt->bindParam(':employee_id', $empId);
+function createStaffAbsRecord($conn, $empId, $absId, $date){
+    $stmt = $conn->prepare("INSERT INTO staff_absence (staff_id, absence_id, date) VALUES (:staff_id, :absence_id, :date)");
+    $stmt->bindParam(':staff_id', $empId);
     $stmt->bindParam(':absence_id', $absId);
     $stmt->bindParam(':date', $date);
     $stmt->execute();
 }
 function deleteOldMonth($conn, $from, $to){
-    $stmt = $conn->prepare("delete from employee_absence where date >= :from && date <= :to");
+    $stmt = $conn->prepare("delete from staff_absence where date >= :from && date <= :to");
     $stmt->bindParam(':from', $from);
     $stmt->bindParam(':to', $to);
     $stmt->execute();

@@ -37,9 +37,13 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="" ng-click="panel = true">Intranet</a>
             </div>
-            <ul class="nav navbar-nav navbar-right" ng-show="!loggedOut">
+            <ul class="nav navbar-nav navbar-right" ng-show="!loggedOut"> 
                 <li><a href="../../profile.php?id={{login}}">{{login}}</a></li>
                 <li><a href="" ng-click="logOut()">logout</a></li>
+                
+            </ul>
+            <ul class="nav navbar-nav navbar-right"> 
+                <li><a href="../../index.php">Domov</a></li>
                 
             </ul>
             <ul class="nav navbar-nav" ng-show="!loggedOut && firstFour">
@@ -62,18 +66,18 @@
             <div class="form-group">
                 <label for="login" class="control-label col-sm-3">login</label>
                 <div class="col-sm-6">
-                    <input type="text" ng-model="login" class="form-control" name="login" ng-change="loginState = ''" required ng-class="{'pass': loginState == 'wrongLogin'}">
+                    <input type="text" ng-model="login" class="form-control" ng-disabled="!loggedOut" name="login" ng-change="loginState = ''" required ng-class="{'pass': loginState == 'wrongLogin'}">
                 </div>
             </div> 
             <div class="form-group">
                 <label for="password" class="control-label col-sm-3">password</label>
                 <div class="col-sm-6">
-                    <input type="password" ng-model="password" class="form-control" name="password" ng-change="loginState = ''" required ng-class="{'pass': loginState == 'wrongLogin'}">
+                    <input type="password" ng-model="password" ng-disabled="!loggedOut" class="form-control" name="password" ng-change="loginState = ''" required ng-class="{'pass': loginState == 'wrongLogin'}">
                 </div>
             </div> 
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <button class="btn btn-success" ng-click="submit('ldapLogin')" ng-disabled="ldapLogin.$invalid">login</button>
+                    <button class="btn btn-success" ng-click="submit('ldapLogin')" ng-disabled="ldapLogin.$invalid || !loggedOut">login</button>
                 </div>
             </div>
         </form>
@@ -85,45 +89,45 @@
             <div class="file-upload">
                 <div class="col-md-4 form-group">
                     <label for="date">Dátum:</label>
-                    <input class="form-control" name="date" type="text" ng-model="fileForm.date">
+                    <input class="form-control" name="date" type="text" ng-model="fileForm.date" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="sktitle">SK-Titul:</label>
-                    <input class="form-control" name="sktitle" type="text" ng-model="fileForm.skTitle">
+                    <input class="form-control" name="sktitle" type="text" ng-model="fileForm.skTitle" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="entitle">EN-Titul:</label>
-                    <input class="form-control" name="entitle" type="text" ng-model="fileForm.enTitle">
+                    <input class="form-control" name="entitle" type="text" ng-model="fileForm.enTitle" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="folder">Názov zložky:</label>
-                    <input class="form-control" name="folder" type="text" ng-model="fileForm.folderName">
+                    <input class="form-control" name="folder" type="text" ng-model="fileForm.folderName" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="pickFile">Vyber súbor:</label>
-                    <input name="pickFile" class="form-control" type="file" file-model="myFile"/>
+                    <input name="pickFile" class="form-control" type="file" file-model="myFile" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="button">Uploadni súbor na server:</label>
-                    <button name="button" class="btn btn-success form-control" ng-click="uploadFile()">Nahrať obrázok</button>
+                    <button name="button" class="btn btn-success form-control" ng-click="uploadFile()" ng-disabled="!mediaUpload">Nahrať obrázok</button>
                 </div>
             </div>
             <div>
                 <div class="col-md-3 form-group">
                     <label for="title">Názov:</label>
-                    <input class="form-control" name="title" type="text" ng-model="videoForm.title">
+                    <input class="form-control" name="title" type="text" ng-model="videoForm.title" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-3 form-group">
                     <label for="url">URL:</label>
-                    <input class="form-control" name="url" type="text" ng-model="videoForm.url">
+                    <input class="form-control" name="url" type="text" ng-model="videoForm.url" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-3 form-group">
                     <label for="type">Typ:</label>
-                    <input class="form-control" name="type" type="text" ng-model="videoForm.type">
+                    <input class="form-control" name="type" type="text" ng-model="videoForm.type" ng-disabled="!mediaUpload">
                 </div>
                 <div class="col-md-3 form-group">
                     <label for="button">Nahraj video:</label>
-                    <button name="button" class="btn btn-success form-control" ng-click="saveVideo()">Uložiť video</button>
+                    <button name="button" class="btn btn-success form-control" ng-click="saveVideo()" ng-disabled="!mediaUpload">Uložiť video</button>
                 </div>
             </div>
         </div>
@@ -178,15 +182,15 @@
                         <td>{{user.id}}</td>
                         <td>{{user.name}}</td>
                         <td>{{user.surname}}</td>
-                        <td><input style ="width: 80px" type="text" value="{{user.title1}}" ng-model="staff[$index].title1"></td>
-                        <td><input style ="width: 50px" type="text" value="{{user.title2}}" ng-model="staff[$index].title2"></td>
-                        <td><input style ="width: 100px" type="text" value="{{user.ldapLogin}}" ng-model="staff[$index].ldapLogin"></td>
-                        <td><input type="text" value="{{user.room}}" ng-model="staff[$index].room"></td>
-                        <td><input type="text" value="{{user.phone}}" ng-model="staff[$index].phone"></td>
-                        <td><input type="text" value="{{user.department}}" ng-model="staff[$index].department"></td>
-                        <td><input style ="width: 100px" type="text" value="{{user.staffRole}}" ng-model="staff[$index].staffRole"></td>
-                        <td><input type="text" value="{{user.function}}" ng-model="staff[$index].function"></td>
-                        <td><button class="btn btn-success col-md-12" ng-click="saveChanges($index)">Uložiť</button></td> 
+                        <td><input style ="width: 80px" type="text" value="{{user.title1}}" ng-model="staff[$index].title1" ng-disabled="!userEdit"></td>
+                        <td><input style ="width: 50px" type="text" value="{{user.title2}}" ng-model="staff[$index].title2" ng-disabled="!userEdit"></td>
+                        <td><input style ="width: 100px" type="text" value="{{user.ldapLogin}}" ng-model="staff[$index].ldapLogin" ng-disabled="!userEdit"></td>
+                        <td><input type="text" value="{{user.room}}" ng-model="staff[$index].room" ng-disabled="!userEdit"></td>
+                        <td><input type="text" value="{{user.phone}}" ng-model="staff[$index].phone" ng-disabled="!userEdit"></td>
+                        <td><input type="text" value="{{user.department}}" ng-model="staff[$index].department" ng-disabled="!userEdit"></td>
+                        <td><input style ="width: 100px" type="text" value="{{user.staffRole}}" ng-model="staff[$index].staffRole" ng-disabled="!userEdit"></td>
+                        <td><input type="text" value="{{user.function}}" ng-model="staff[$index].function" ng-disabled="!userEdit"></td>
+                        <td><button class="btn btn-success col-md-12" ng-click="saveChanges($index)" ng-disabled="!userEdit">Uložiť</button></td> 
                     </tr>
                 </tbody>
             </table>
