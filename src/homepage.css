@@ -1,0 +1,164 @@
+#bhomeWhat{
+    width: 60%;
+    padding-right: 10px;
+    border-right: 1px solid gainsboro;
+}
+#bhomeAvg{
+    width: 35%;
+}
+
+#homeWhatLine{
+    border-bottom: 1px solid gainsboro;
+    border-top: 1px solid gainsboro;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#bbtn{
+    width: 100%;
+    margin: auto;
+    /* margin-top: -23px; */
+    text-align: center;
+    /* padding-bottom: 5px; */
+    position: absolute;
+    bottom: 10px;
+}
+.bmySlides{
+    width: 100%;
+    display: block;
+    position: absolute;
+    bottom: 60px;
+}
+.btextObrazku{
+    margin-left: 5%;
+    display: block;
+    bottom: 60px;
+    min-height: 270px;
+}
+
+.bw3-content{
+    max-width: 600px;
+    margin: auto;
+    margin-top: 30px;
+    position: relative;
+    height: 480px;
+}
+.bw3-center{
+    text-align: center!important;
+}
+
+
+.bw3-btn, .w3-button {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.bbar {
+    margin: 10px;
+    height: 30px;
+    outline: thin solid #444444;
+    position: relative;
+    width: 17%;
+    min-width: 250px;
+    color: white;
+    background-color: gainsboro;
+    font-size: 16px;
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(38,37,38,1);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(38,37,38,1);
+    box-shadow: 0px 0px 5px 2px rgba(38,37,38,1);
+}
+
+#bprogramator::before {
+    height:30px;
+    content:'Programátor 1200€';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #58906b;
+    width: 100%;
+}
+
+#bkonstrukter::before {
+    height:30px;
+    content:'CATIA konštruktér 1090€';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #58906b;
+    width: 95%;
+}
+
+#bkancelarska::before {
+    height:30px;
+    content:'Ekonóm 750€';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #5c5f6e;
+    width: 85%;
+}
+
+#bagronom::before {
+    height:30px;
+    content:'Agronóm 670€';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #5c5f6e;
+    width: 80%;
+}
+
+#bsocio::before {
+    height:30px;
+    content:'Sociálny pracovník 520€';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #a34e4f;
+    width: 72%;
+}
+
+#bpsycho::before {
+    height:30px;
+    content:'Školský psychológ 510€';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #a34e4f;
+    width: 71%;
+}
+
+@media screen and (max-width: 667px) {
+    .homeWhatLine{
+        display: block;
+    }
+    #bhomeWhat{
+        width: auto;
+        border-right: 0px;
+    }
+    #bhomeAvg{
+        width: auto;
+        margin-left: 10%;
+    }
+    .bw3-content{
+        height: 450px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .bw3-content{
+        height: 380px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .bw3-content{
+        height: 320px;
+    }
+}

@@ -1,12 +1,12 @@
 <div class="bmenuBackground">
     <ul class="bdropDownMenu">
-        <li><a href="aboutus.php">O nás</a></li>
-        <li><a href="staff.php">Pracovníci</a></li>
-        <li><a href="study.php">Štúdium</a></li>
-        <li><a href="#">Výskum</a>
+        <li><a href="aboutus.php">About us</a></li>
+        <li><a href="staff.php">Staff</a></li>
+        <li><a href="study.php">Study</a></li>
+        <li><a href="#">Research</a>
             <ul>
-                <li><a href="projects.php">Projekty</a></li>
-                <li><a href="#">Výskumné oblasti</a>
+                <li><a href="projects.php">Projects</a></li>
+                <li><a href="#">Research topics</a>
                     <ul>
                         <li><a href="#">Elektronická motokára</a></li>
                         <li><a href="#">Autonómne vozidlo 6x6</a></li>
@@ -16,11 +16,11 @@
                 </li>
             </ul>
         </li>
-        <li><a href="#">Aktivity</a>
+        <li><a href="#">Activities</a>
             <ul>
-                <li><a href="fotogaleria.php">Fotogaléria</a></li>
-                <li><a href="video.php">Videá</a></li>
-                <li><a href="media.php">Média</a></li>
+                <li><a href="fotogaleria.php">Photos</a></li>
+                <li><a href="video.php">Video</a></li>
+                <li><a href="media.php">Media</a></li>
                 <li><a href="#">Naše tématické web stránky</a>
                     <ul>
                         <li><a href="http://www.e-mobilita.fei.stuba.sk/">Elektromobilita</a></li>
@@ -28,6 +28,6 @@
                 </li>
             </ul>
         </li>
-        <li><a href="contact.php">Kontakt</a></li>
+        <li><a href="contact.php">Contact</a></li>
     </ul>
 </div>

@@ -119,14 +119,14 @@ class Staff {
         $this->db->connectDB();
     }
 
-    function getall() {
+    function getAll() {
         $query = 'SELECT name, surname, title1, title2, room, phone, department, staffRole, function FROM staff;';
         $result = $this->db->executeSelectQuery($query);
 
         return $result;
     }
 
-    function getdetail($name, $surname) {
+    function getDetail($name, $surname) {
         $query = "SELECT name, surname, title1, title2, photo, staffRole, department, phone, room, ldapLogin
                   FROM staff
                   WHERE name='{$name}'
@@ -137,7 +137,7 @@ class Staff {
         return $result;
     }
 
-    function getdepartment($abbr) {
+    function getDepartment($abbr) {
         $query = "SELECT full_name
                   FROM departments
                   WHERE abbrev='{$abbr}';";

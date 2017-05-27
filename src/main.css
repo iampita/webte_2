@@ -6,7 +6,7 @@
 }
 
 body{
-    margin: 50px;
+    margin: 20px 50px 20px 50px;
     z-index: 1;
 }
 
@@ -135,14 +135,94 @@ td > div, th > div {
     width: 70%;
 }
 
+#bheaderFEI{
+    width: 25%;
+    margin-top: 15px;
+}
+#bheadercar{
+    width: 50%;
+}
+#imgCar{
+    width: 100%;
+}
+#bvolby{
+    text-align: right;
+}
+
+.afilter.right {
+    float: right;
+}
+
+.afilter.left {
+    display: inline;
+}
+
 @media screen and (max-width: 667px) {
     body{
         margin: 2px;
     }
-    #map{
-        width: 50%;
+
+    #imgCar{
+         width: 300px;
+         }
+
+     .flex-container{
+         flex-direction: column;
+     }
+
+     .flex-links {
+         width: 100%;
+     }
+
+    .flex-map {
+        width: 100%;
     }
-    .flex-links{
-        width: 45%
+
+    #map {
+        width: 100%;
+    }
+
+    .atitle {
+        text-align: center;
+    }
+
+    .afilter.aright {
+        display: inherit;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    body{
+        margin: 2px;
+    }
+
+    #imgCar{
+        width: 300px;
+    }
+
+    .flex-container{
+        flex-direction: column;
+    }
+
+    .flex-links {
+        width: 100%;
+    }
+
+    .flex-map {
+        width: 100%;
+    }
+
+    #map {
+        width: 100%;
+    }
+
+    .atitle {
+        text-align: center;
+    }
+
+    .afilter.aright {
+        display: inherit;
+        float: left;
     }
 }

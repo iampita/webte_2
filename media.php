@@ -1,7 +1,10 @@
 <?php
 include_once './src/Translator.php';
+
+isset($_SESSION['lang']) ? null : $_SESSION['lang'] = 'sk';
+
 $page = Translator::getSite();
-$translation = Translator::translate($page[0], $_GET['lang'])
+$translation = Translator::translate($page[0], $_SESSION['lang']);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +27,11 @@ $translation = Translator::translate($page[0], $_GET['lang'])
 
 <?php
 include 'config.php';
-include 'menu/menu.php';
+include 'src/header.php';
+isset($_SESSION['lang']) ? $lang = $_SESSION['lang'] : $lang = 'sk';
+if($lang == 'en')
+    include_once 'menu/menuEN.php';
+else include 'menu/menu.php';
 ?>
 <h1><?php echo $translation->title;?></h1>
 <?php
