@@ -82,11 +82,12 @@
         </div>
 </nav>
     <form action="" method="post" >
+  <?php if(isset($_SESSION['username'])){
 
-    <textarea cols="80" id="editor1" name="editor1" rows="10" width="80%">  
+    echo '<textarea cols="80" id="editor1" name="editor1" rows="10" width="80%"> '; 
 
 
-<?php
+
 
     $sql2 = "SELECT * FROM nakupy";
     $result = $conn->query($sql2);
@@ -95,15 +96,15 @@ while($row=$result->fetch_assoc()){
         echo $row['content'];
     }
 
-?>
 
-    </textarea>
+
+   echo ' </textarea>
 
         <p>
-        <?php if(isset($_SESSION['username'])){
+      
 
           
-          echo ' <input value="Ulož" type="submit">';
+           <input value="Ulož" type="submit">';
 
         }
         ?>
