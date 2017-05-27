@@ -93,3 +93,16 @@ Tutorial Link:    http://html-tuts.com/?p=8136
 		left: 0;
 	}
 }
+
+@media print{
+
+
+header{
+	display:none;
+	}
+.bdropDownMenu{
+	display:none;
+}
+
+
+}
