@@ -157,6 +157,47 @@ td > div, th > div {
     display: inline;
 }
 
+.astaffname {
+    width: 30%;
+}
+
+.astaffroom {
+    width: 10%;
+}
+
+.astaffphone {
+    width: 10%;
+}
+
+.astaffdep {
+    width: 10%;
+}
+
+.astaffrole {
+    width: 10%;
+}
+
+.astafffunct {
+    width: 30%;
+}
+
+.aimg {
+    max-width:100%;
+    max-height:100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.aimgright {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.flex-half {
+    width: 50%;
+}
+
 @media screen and (max-width: 667px) {
     body{
         margin: 2px;
@@ -189,6 +230,13 @@ td > div, th > div {
     .afilter.aright {
         display: inherit;
         float: left;
+    }
+
+    .flex-half {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 }
 

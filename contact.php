@@ -41,7 +41,7 @@ $translation = Translator::translate($page[0], $_SESSION['lang']);
                 <?php echo $translation->phone2;?><br>
                 <?php echo $translation->webpage;?><br>
             </div>
-            <br><br>
+            <br>
             <div class="map flex-map" id="map"></div>
                 <script>
                     var map;

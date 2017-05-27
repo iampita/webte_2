@@ -105,12 +105,12 @@ $translation = Translator::translate($page[0], $_GET['lang'])
             echo "<div>
                     <table id='staffTable' class='tablesorter'>
                         <thead>
-                            <th style='width: 25%'><div>{$translation->name}</div></th>
-                            <th style='width: 10%'><div>{$translation->room}</div></th>
-                            <th style='width: 10%'><div>{$translation->phone}</div></th>
-                            <th style='width: 10%'><div>{$translation->department}</div></th>
-                            <th style='width: 15%'><div>{$translation->role}</div></th>
-                            <th style='width: 30%'><div>{$translation->function}</div></th>
+                            <th class='astaffname'><div>{$translation->name}</div></th>
+                            <th class='astaffroom'><div>{$translation->room}</div></th>
+                            <th class='astaffphone'><div>{$translation->phone}</div></th>
+                            <th class='astaffdep'><div>{$translation->department}</div></th>
+                            <th class='astaffrole'><div>{$translation->role}</div></th>
+                            <th class='astafffunct'><div>{$translation->function}</div></th>
                         </thead>
                     <tbody>
                   </div>";

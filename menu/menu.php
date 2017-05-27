@@ -8,10 +8,10 @@
                 <li><a href="projects.php">Projekty</a></li>
                 <li><a href="#">Výskumné oblasti</a>
                     <ul>
-                        <li><a href="#">Elektronická motokára</a></li>
-                        <li><a href="#">Autonómne vozidlo 6x6</a></li>
-                        <li><a href="#">3D LED kocka</a></li>
-                        <li><a href="#">Biomechatronika</a> </li>
+                        <li><a href="electrokart.php">Elektronická motokára</a></li>
+                        <li><a href="autonomouscar.php">Autonómne vozidlo 6x6</a></li>
+                        <li><a href="ledcube.php">3D LED kocka</a></li>
+                        <li><a href="biomechatronics.php">Biomechatronika</a> </li>
                     </ul>
                 </li>
             </ul>
